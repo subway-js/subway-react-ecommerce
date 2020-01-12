@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Grid,
   Image,
@@ -10,8 +10,13 @@ import {
   Dimmer
 } from "semantic-ui-react";
 
-import { AddToCartButton } from "../components/addToCartButton";
+import { Subway } from "../../../../subwayRef";
+import { AGGREGATE_NAME as PRODUCTS_AGGREGATE_NAME } from "../../";
 
+import { selectProductForDetails } from "../../commandCreators";
+
+import { AddToCartButton } from "../components/addToCartButton";
+/*
 const sampleData = [
   {
     id: 1,
@@ -77,10 +82,22 @@ const sampleData = [
     reviewsCount: 198
   }
 ];
+*/
 export function ProductList() {
-  const [productList, setProductList] = useState(sampleData);
+  const [productList, setProductList] = useState([]);
   const [detailsButtonHoveredId, setDetailsButtonHoveredId] = useState(null);
-  // console.log(productList);
+
+  useEffect(() => {
+    const productsAggregate = Subway.selectAggregate(PRODUCTS_AGGREGATE_NAME);
+    const { currentState, unsubscribe } = productsAggregate.observeState({
+      next: ({ nextState }) => {
+        const { productsList } = nextState;
+        setProductList(productsList);
+        unsubscribe(); // TODO implement observeOnce
+      }
+    });
+    setProductList(currentState.productsList);
+  }, []);
 
   return (
     <Grid columns={3}>
@@ -123,7 +140,12 @@ export function ProductList() {
                   <Image src={img} wrapped />
 
                   <Dimmer active={detailsButtonHoveredId === id}>
-                    <Button basic size="small" color="teal">
+                    <Button
+                      basic
+                      size="small"
+                      color="teal"
+                      onClick={() => selectProductForDetails(id)}
+                    >
                       <Button.Content>
                         <Icon name="magnify" /> Product details
                       </Button.Content>
