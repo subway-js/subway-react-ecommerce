@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Container } from "semantic-ui-react";
+
+import { Navbar, Breadcrumbs } from "./aggregates/navigation";
+import { ProductList, ProductDetails } from "./aggregates/products";
+import { HeaderShoppingCartDropdown } from "./aggregates/shoppingCart";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Navbar shoppingCartMenuItem={<HeaderShoppingCartDropdown />} />
+      <br />
+      <br />
+      <br />
+      <br />
+      <Breadcrumbs />
+      <br />
+      <br />
+      <ProductList />
+      <ProductDetails />
+    </Container>
   );
 }
 
