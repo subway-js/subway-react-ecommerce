@@ -1,12 +1,9 @@
 import React from "react";
 import {
   Button,
-  Icon,
-  Dropdown,
   Popup,
-  Rating,
-  Divider,
   Header,
+  Icon,
   Segment,
   Item,
   Label

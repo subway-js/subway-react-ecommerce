@@ -10,7 +10,7 @@ import {
   Dimmer
 } from "semantic-ui-react";
 
-import { AddToCartButton } from "../../../shoppingCart";
+import { AddToCartButton } from "../components/addToCartButton";
 
 const sampleData = [
   {

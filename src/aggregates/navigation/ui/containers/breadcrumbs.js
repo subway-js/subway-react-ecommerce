@@ -5,7 +5,7 @@ export function Breadcrumbs() {
   return (
     <Breadcrumb>
       <Breadcrumb.Section color="teal" link>
-        Home
+        Store
       </Breadcrumb.Section>
       <Breadcrumb.Divider />
 

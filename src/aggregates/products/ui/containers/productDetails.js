@@ -6,13 +6,11 @@ import {
   Container,
   Rating,
   Divider,
-  Button,
   Icon,
-  Label,
-  Grid
+  Label
 } from "semantic-ui-react";
 
-import { AddToCartButton } from "../../../shoppingCart";
+import { AddToCartButton } from "../components/addToCartButton";
 
 const sampleProduct = {
   id: 4,

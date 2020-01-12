@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button, Menu, Icon } from "semantic-ui-react";
+import { Container, Menu } from "semantic-ui-react";
 
 export function Navbar({ shoppingCartMenuItem }) {
   return (
@@ -11,7 +11,9 @@ export function Navbar({ shoppingCartMenuItem }) {
       style={{ background: "white" }}
     >
       <Container>
-        <Menu.Item active>Home</Menu.Item>
+        <Menu.Item header active>
+          Store
+        </Menu.Item>
 
         <Menu.Item position="right">
           {shoppingCartMenuItem}
