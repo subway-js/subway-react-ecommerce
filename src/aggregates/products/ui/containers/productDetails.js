@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Segment,
   Image,
@@ -10,35 +10,16 @@ import {
   Label
 } from "semantic-ui-react";
 
-import { Subway } from "../../../../subwayRef";
 import { AGGREGATE_NAME as PRODUCTS_AGGREGATE_NAME } from "../../";
 
+import { useObserveAggregateState } from "../../../../subwayUtils/useObserveAggregateState";
 import { AddToCartButton } from "../components/addToCartButton";
 
 export function ProductDetails() {
-  const [product, setProduct] = useState(null);
-
-  useEffect(() => {
-    const productsAggregate = Subway.selectAggregate(PRODUCTS_AGGREGATE_NAME);
-    const { currentState } = productsAggregate.observeState({
-      next: ({ nextState }) => {
-        selectProduct(nextState);
-      }
-    });
-    selectProduct(currentState);
-  }, []);
-
-  const selectProduct = aggregateState => {
-    const { productsList, selectedProductId } = aggregateState;
-    if (selectedProductId) {
-      const selected = productsList.filter(
-        item => item.id === selectedProductId
-      );
-      setProduct(selected.length === 1 ? selected[0] : null);
-    } else {
-      setProduct(null);
-    }
-  };
+  const [product] = useObserveAggregateState(
+    PRODUCTS_AGGREGATE_NAME,
+    aggregateState => aggregateState.selectedProduct
+  );
 
   return (
     <>

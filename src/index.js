@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-import { Subway } from "./subwayRef";
+import { Subway } from "./subwayUtils/subwayRef";
 
 import {
   bootstrap as bootstrapProducts,

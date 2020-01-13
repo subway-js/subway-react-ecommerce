@@ -14,11 +14,11 @@ export const evtProductsListLoadedHandler = {
 
 export const evtProductSelectedForDetailsHandler = {
   command: Events.PRODUCT_SELECTED_FOR_DETAILS,
-  handler: (aggregateState, { productId }) => {
+  handler: (aggregateState, { product }) => {
     return {
       proposal: {
         ...aggregateState,
-        selectedProductId: productId
+        selectedProduct: product
       }
     };
   }

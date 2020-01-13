@@ -3,7 +3,7 @@ import { loadProductsList } from "./commandCreators";
 export const AGGREGATE_NAME = "ProductsAggregate";
 export const initialState = {
   productsList: [],
-  selectedProductId: null
+  selectedProduct: null
 };
 
 export { cmdHandlers } from "./handlers/commands";
