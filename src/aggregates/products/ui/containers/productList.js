@@ -10,7 +10,7 @@ import {
   Dimmer
 } from "semantic-ui-react";
 
-import { useObserveAggregateStateOnce } from "../../../../subwayUtils/useObserveAggregateState";
+import { useObserveAggregateStateOnce } from "../../../../subwayUtils/";
 
 import { AGGREGATE_NAME as PRODUCTS_AGGREGATE_NAME } from "../../";
 

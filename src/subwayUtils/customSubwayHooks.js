@@ -3,7 +3,7 @@ import { Subway } from "./subwayRef";
 
 export const useObserveAggregateState = (
   aggregateName,
-  nextStateParser,
+  selector,
   once = false
 ) => {
   const [data, setData] = useState(null);
@@ -13,15 +13,15 @@ export const useObserveAggregateState = (
     const productsAggregate = Subway.selectAggregate(aggregateName);
     const { currentState, unsubscribe } = productsAggregate.observeState({
       next: ({ nextState }) => {
-        setData(nextStateParser(nextState));
+        setData(selector(nextState));
         if (once) unsubscribe();
       }
     });
-    setData(nextStateParser(currentState));
+    setData(selector(currentState));
   }, []);
 
   return [data];
 };
 
-export const useObserveAggregateStateOnce = (aggregateName, nextStateParser) =>
-  useObserveAggregateState(aggregateName, nextStateParser, true);
+export const useObserveAggregateStateOnce = (aggregateName, selector) =>
+  useObserveAggregateState(aggregateName, selector, true);

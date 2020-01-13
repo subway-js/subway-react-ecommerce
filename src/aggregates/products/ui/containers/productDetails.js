@@ -12,7 +12,7 @@ import {
 
 import { AGGREGATE_NAME as PRODUCTS_AGGREGATE_NAME } from "../../";
 
-import { useObserveAggregateState } from "../../../../subwayUtils/useObserveAggregateState";
+import { useObserveAggregateState } from "../../../../subwayUtils/";
 import { AddToCartButton } from "../components/addToCartButton";
 
 export function ProductDetails() {
