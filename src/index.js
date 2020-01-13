@@ -13,6 +13,12 @@ import {
   evtHandlers as productsEvtHandlers
 } from "./aggregates/products";
 
+import {
+  // bootstrap as bootstrapNavigation,
+  AGGREGATE_NAME as NavigationAggregateName,
+  initialState as navigationInitialState
+} from "./aggregates/navigation";
+
 const initAggregate = (aggregate, cmdHandlers, evtHandlers) => {
   cmdHandlers.forEach(({ command, handler, onError = null }) => {
     aggregate.setCommandHandler(command, handler, onError);
@@ -25,6 +31,11 @@ const initAggregate = (aggregate, cmdHandlers, evtHandlers) => {
 const productAggregate = Subway.createAggregate(
   ProductsAggregateName,
   productsInitialState
+);
+
+const navigationAggregate = Subway.createAggregate(
+  NavigationAggregateName,
+  navigationInitialState
 );
 
 initAggregate(productAggregate, productsCmdHandlers, productsEvtHandlers);

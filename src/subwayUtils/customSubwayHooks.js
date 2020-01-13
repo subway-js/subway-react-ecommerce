@@ -18,6 +18,10 @@ export const useObserveAggregateState = (
       }
     });
     setData(selector(currentState));
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return [data];
@@ -25,3 +29,21 @@ export const useObserveAggregateState = (
 
 export const useObserveAggregateStateOnce = (aggregateName, selector) =>
   useObserveAggregateState(aggregateName, selector, true);
+
+export const useSpyAggregateEvent = (aggregateName, eventID, selector) => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = Subway.selectAggregate(aggregateName).spy(eventID, {
+      next: eventPayload => {
+        setData(selector(eventPayload));
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  return [data];
+};
