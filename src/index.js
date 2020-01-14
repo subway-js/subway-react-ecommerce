@@ -2,53 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import { initAggregates } from "./subwayUtils";
+import { aggregateConfig as productAggregateConfig } from "./aggregates/products";
+import { aggregateConfig as navigationAggregateConfig } from "./aggregates/navigation";
 
-import { Subway } from "./subwayUtils/";
-
-import {
-  bootstrap as bootstrapProducts,
-  AGGREGATE_NAME as ProductsAggregateName,
-  initialState as productsInitialState,
-  cmdHandlers as productsCmdHandlers,
-  evtHandlers as productsEvtHandlers
-} from "./aggregates/products";
-
-import {
-  bootstrap as bootstrapNavigation,
-  AGGREGATE_NAME as NavigationAggregateName,
-  initialState as navigationInitialState,
-  cmdHandlers as navigationCmdHandlers,
-  evtHandlers as navigationEvtHandlers
-} from "./aggregates/navigation";
-
-const initAggregate = (aggregate, cmdHandlers, evtHandlers) => {
-  cmdHandlers.forEach(({ command, handler, onError = null }) => {
-    aggregate.setCommandHandler(command, handler, onError);
-  });
-  evtHandlers.forEach(({ command, handler, onError = null }) => {
-    aggregate.setEventHandler(command, handler, onError);
-  });
-};
-
-const productAggregate = Subway.createAggregate(
-  ProductsAggregateName,
-  productsInitialState
-);
-
-const navigationAggregate = Subway.createAggregate(
-  NavigationAggregateName,
-  navigationInitialState
-);
-
-initAggregate(productAggregate, productsCmdHandlers, productsEvtHandlers);
-initAggregate(
-  navigationAggregate,
-  navigationCmdHandlers,
-  navigationEvtHandlers
-);
-
-bootstrapNavigation();
-bootstrapProducts();
+initAggregates([productAggregateConfig, navigationAggregateConfig]);
 
 ReactDOM.render(<App />, document.getElementById("root"));
 

@@ -52,7 +52,6 @@ export function Breadcrumbs() {
         <Grid.Column textAlign="right">
           <Button
             onClick={() => selectHomePage()}
-            basic
             size="tiny"
             content="Back to products"
             icon="angle left"

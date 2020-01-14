@@ -14,18 +14,20 @@ function App() {
   );
 
   return (
-    <Container>
-      <Navbar shoppingCartMenuItem={<HeaderShoppingCartDropdown />} />
-      <br />
-      <br />
-      <br />
-      <br />
-      <Breadcrumbs />
-      <br />
-      <br />
-      {(!currentPage || currentPage) === "home" && <ProductList />}
-      {currentPage === "product" && <ProductDetails />}
-    </Container>
+    <div style={{ background: "#f8f9fa" }}>
+      <Container>
+        <Navbar shoppingCartMenuItem={<HeaderShoppingCartDropdown />} />
+        <br />
+        <br />
+        <br />
+        <br />
+        <Breadcrumbs />
+        <br />
+        <br />
+        {(!currentPage || currentPage) === "home" && <ProductList />}
+        {currentPage === "product" && <ProductDetails />}
+      </Container>
+    </div>
   );
 }
 

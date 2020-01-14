@@ -2,6 +2,9 @@ import { Subway } from "../../subwayUtils/";
 
 import { selectProductPage } from "./commandCreators";
 
+import { cmdHandlers } from "./handlers/commands";
+import { evtHandlers } from "./handlers/events";
+
 export { Navbar } from "./ui/containers/navbar";
 export { Breadcrumbs } from "./ui/containers/breadcrumbs";
 
@@ -12,14 +15,20 @@ export const initialState = {
   // loggedUser: null
 };
 
-export { cmdHandlers } from "./handlers/commands";
-export { evtHandlers } from "./handlers/events";
-
-export const bootstrap = () => {
-  // TODO create utility function in subwaJS
-  Subway.selectAggregate("ProductsAggregate").spy("ProductSelectedForDetails", {
-    next: () => {
-      selectProductPage();
-    }
-  });
+export const aggregateConfig = {
+  name: AGGREGATE_NAME,
+  initialState,
+  cmdHandlers,
+  evtHandlers,
+  bootstrap: () => {
+    // TODO create utility function in subwaJS
+    Subway.selectAggregate("ProductsAggregate").spy(
+      "ProductSelectedForDetails",
+      {
+        next: () => {
+          selectProductPage();
+        }
+      }
+    );
+  }
 };
