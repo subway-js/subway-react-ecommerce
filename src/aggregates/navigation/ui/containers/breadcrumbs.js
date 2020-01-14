@@ -1,7 +1,13 @@
 import React from "react";
-import { Breadcrumb } from "semantic-ui-react";
+import { Breadcrumb, Button, Grid } from "semantic-ui-react";
 
-import { useSpyAggregateEvent } from "../../../../subwayUtils/";
+import {
+  useSpyAggregateEvent,
+  useObserveAggregateState
+} from "../../../../subwayUtils/";
+import { selectHomePage } from "../../commandCreators";
+
+import { AGGREGATE_NAME as NAVIGATION_AGGREGATE_NAME } from "../../";
 
 export function Breadcrumbs() {
   const [selectedProduct] = useSpyAggregateEvent(
@@ -10,25 +16,51 @@ export function Breadcrumbs() {
     ({ product }) => ({ id: product.id, title: product.title })
   );
 
-  console.log(selectedProduct);
+  const [currentPage] = useObserveAggregateState(
+    NAVIGATION_AGGREGATE_NAME,
+    aggregateState => aggregateState.currentPage
+  );
+
   return (
-    <Breadcrumb>
-      <Breadcrumb.Section color="teal" link>
-        Store
-      </Breadcrumb.Section>
-      <Breadcrumb.Divider />
-      {(!selectedProduct || !selectedProduct.id) && (
-        <Breadcrumb.Section active>All Products</Breadcrumb.Section>
+    <Grid relaxed columns={2}>
+      <Grid.Column>
+        <Breadcrumb>
+          {currentPage === "home" && (
+            <Breadcrumb.Section active>Products</Breadcrumb.Section>
+          )}
+          {currentPage === "product" &&
+            selectedProduct &&
+            selectedProduct.id &&
+            selectedProduct.title && (
+              <>
+                <Breadcrumb.Section
+                  active
+                  link
+                  onClick={() => selectHomePage()}
+                >
+                  Products
+                </Breadcrumb.Section>
+                <Breadcrumb.Divider />
+                <Breadcrumb.Section active>
+                  {selectedProduct.title}
+                </Breadcrumb.Section>
+              </>
+            )}
+        </Breadcrumb>
+      </Grid.Column>
+      {currentPage === "product" && (
+        <Grid.Column textAlign="right">
+          <Button
+            onClick={() => selectHomePage()}
+            basic
+            size="tiny"
+            content="Back to products"
+            icon="angle left"
+            color="teal"
+            labelPosition="left"
+          />
+        </Grid.Column>
       )}
-      {selectedProduct && selectedProduct.id && selectedProduct.title && (
-        <>
-          <Breadcrumb.Section active>Product</Breadcrumb.Section>
-          <Breadcrumb.Divider />
-          <Breadcrumb.Section active>
-            {selectedProduct.title}
-          </Breadcrumb.Section>
-        </>
-      )}
-    </Breadcrumb>
+    </Grid>
   );
 }

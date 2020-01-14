@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Menu } from "semantic-ui-react";
+import { Container, Menu, Header } from "semantic-ui-react";
 
 export function Navbar({ shoppingCartMenuItem }) {
   return (
@@ -11,8 +11,10 @@ export function Navbar({ shoppingCartMenuItem }) {
       style={{ background: "white" }}
     >
       <Container>
-        <Menu.Item header active>
-          Store
+        <Menu.Item>
+          <Header as="h2" color="teal">
+            SubwayJS eComm
+          </Header>
         </Menu.Item>
 
         <Menu.Item position="right">

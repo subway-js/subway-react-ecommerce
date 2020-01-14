@@ -20,7 +20,11 @@ export const useObserveAggregateState = (
     setData(selector(currentState));
 
     return () => {
-      unsubscribe();
+      try {
+        unsubscribe();
+      } catch (e) {
+      } finally {
+      }
     };
   }, []);
 

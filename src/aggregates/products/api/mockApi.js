@@ -1,6 +1,6 @@
 import { data } from "./data";
 
-const RPC_FAKE_DELAY = 1500;
+const RPC_FAKE_DELAY = 500;
 export const getProductsList = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

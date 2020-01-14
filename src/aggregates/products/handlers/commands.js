@@ -16,10 +16,8 @@ export const cmdLoadProductsListHandler = {
 export const cmdSelectProductForDetailsHandler = {
   command: Commands.SELECT_PRODUCT_FOR_DETAILS,
   handler: (aggregateState, { product }) => ({
-    events: [
-      { id: Events.PRODUCT_SELECTED_FOR_DETAILS, payload: { product } }
-      // { id: Events.PRODUCTS_LIST_LOADED, payload: { productsList } } TODO UPDATE NAVIGATION
-    ]
+    // TODO load product details???
+    events: [{ id: Events.PRODUCT_SELECTED_FOR_DETAILS, payload: { product } }]
   })
 };
 

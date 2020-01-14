@@ -14,9 +14,11 @@ import {
 } from "./aggregates/products";
 
 import {
-  // bootstrap as bootstrapNavigation,
+  bootstrap as bootstrapNavigation,
   AGGREGATE_NAME as NavigationAggregateName,
-  initialState as navigationInitialState
+  initialState as navigationInitialState,
+  cmdHandlers as navigationCmdHandlers,
+  evtHandlers as navigationEvtHandlers
 } from "./aggregates/navigation";
 
 const initAggregate = (aggregate, cmdHandlers, evtHandlers) => {
@@ -39,7 +41,13 @@ const navigationAggregate = Subway.createAggregate(
 );
 
 initAggregate(productAggregate, productsCmdHandlers, productsEvtHandlers);
+initAggregate(
+  navigationAggregate,
+  navigationCmdHandlers,
+  navigationEvtHandlers
+);
 
+bootstrapNavigation();
 bootstrapProducts();
 
 ReactDOM.render(<App />, document.getElementById("root"));
