@@ -8,48 +8,16 @@ import {
   Item,
   Label
 } from "semantic-ui-react";
-
-const testItems = [
-  {
-    id: 2,
-    img:
-      "http://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/5.jpg",
-    title: "Leather Sleeve - Macbook 13’’",
-    price: "3753.00",
-    newPrice: "3099.00",
-    ccy: "$",
-    rating: "4",
-    reviewsCount: 56
-  },
-  {
-    id: 3,
-    img:
-      "http://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/4.jpg",
-    title: "Fjällräven Kånken Backpack Blue Ridge",
-    price: "84.00",
-    rating: "5",
-    ccy: "$",
-    reviewsCount: 85
-  },
-  {
-    id: 4,
-    img:
-      "http://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/12.jpg",
-    title: "Off-White Odsy-1000 Low-Top Sneakers",
-    price: "815.00",
-    newPrice: "799.00",
-    rating: "4",
-    ccy: "$",
-    reviewsCount: 422
-  }
-];
-
-const noItems = [];
+import { AGGREGATE_NAME as SHOPPING_CART_AGGREGATE_NAME } from "../../";
+import { useObserveAggregateState } from "../../../../subwayUtils/";
 
 export function HeaderShoppingCartDropdown({ size }) {
-  // const items = noItems;
-  const items = testItems;
-
+  const [shoppingData] = useObserveAggregateState(
+    SHOPPING_CART_AGGREGATE_NAME,
+    aggregateState => aggregateState || {}
+  );
+  const { items = new Map(), total } = shoppingData || {};
+  const cartItems = Array.from(items).map(item => ({ ...item[1] }));
   return (
     <Popup
       on="click"
@@ -57,16 +25,16 @@ export function HeaderShoppingCartDropdown({ size }) {
       trigger={
         <Button basic color="teal" style={{ marginLeft: "0.5em" }}>
           <Icon name="shopping cart" color="teal" />
-          {items && items.length > 0 && (
+          {cartItems && cartItems.length > 0 && (
             <Label circular size="tiny" color="teal">
-              {items.length}
+              {cartItems.reduce((acc, curr) => +acc + +curr.count, 0)}
             </Label>
           )}
         </Button>
       }
     >
       <Popup.Content>
-        {(!items || items.length === 0) && (
+        {(!cartItems || cartItems.length === 0) && (
           <Segment basic textAlign="center">
             <Icon name="frown outline" size="big" color="teal" />
             <Header size="tiny">
@@ -74,29 +42,39 @@ export function HeaderShoppingCartDropdown({ size }) {
             </Header>
           </Segment>
         )}
-        {items && items.length > 0 && (
+        {cartItems && cartItems.length > 0 && (
           <Item.Group divided>
-            {items.map(({ id, img, title, price, newPrice, ccy }) => (
-              <Item key={id}>
-                <Item.Image size="mini" src={img} />
+            {cartItems.map(
+              ({ id, img, title, price, newPrice, ccy, count }) => (
+                <Item key={id}>
+                  <Item.Image size="mini" src={img} />
 
-                <Item.Content>
-                  <Item.Description>{title}</Item.Description>
-                  <Item.Meta>
-                    <span className="price">
-                      {ccy}
-                      {newPrice || price}
-                    </span>
-                  </Item.Meta>
-                </Item.Content>
-              </Item>
-            ))}
+                  <Item.Content>
+                    <Item.Description>
+                      {count && count > 1 && (
+                        <Label circular size="tiny" color="black">
+                          x{count}
+                        </Label>
+                      )}{" "}
+                      {title}
+                    </Item.Description>
+                    <Item.Meta>
+                      <span className="price">
+                        {ccy}
+                        {(newPrice || price) * count}
+                      </span>
+                    </Item.Meta>
+                  </Item.Content>
+                </Item>
+              )
+            )}
             <Item>
               <Item.Header as="h4">
-                Total: {items[0].ccy}{" "}
-                {items
+                Total: {cartItems[0].ccy}{" "}
+                {cartItems
                   .reduce(
-                    (acc, curr) => +acc + +(curr.newPrice || curr.price),
+                    (acc, curr) =>
+                      +acc + +((curr.newPrice || curr.price) * curr.count),
                     0
                   )
                   .toFixed(2)}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Icon } from "semantic-ui-react";
 
-export function AddToCartButton({ size }) {
+export function AddToCartButton({ product, size, onClick }) {
   const [loading, setLoading] = useState(false);
   return (
     <Button
@@ -12,7 +12,7 @@ export function AddToCartButton({ size }) {
       onClick={() => {
         setLoading(true);
         setTimeout(() => {
-          console.log("Add to shopping cart action...");
+          onClick(product);
           setLoading(false);
         }, 500);
       }}

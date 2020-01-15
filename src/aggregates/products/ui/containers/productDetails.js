@@ -14,6 +14,7 @@ import { AGGREGATE_NAME as PRODUCTS_AGGREGATE_NAME } from "../../";
 
 import { useObserveAggregateState } from "../../../../subwayUtils/";
 import { AddToCartButton } from "../components/addToCartButton";
+import { triggerAddToShoppingCart } from "../../commandCreators";
 
 export function ProductDetails() {
   const [product] = useObserveAggregateState(
@@ -91,7 +92,11 @@ export function ProductDetails() {
             )}
 
             <Divider />
-            <AddToCartButton size="huge" />
+            <AddToCartButton
+              size="huge"
+              product={product}
+              onClick={triggerAddToShoppingCart}
+            />
             {
               // <Button size="huge" fluid color="teal">
               //   <Button.Content>

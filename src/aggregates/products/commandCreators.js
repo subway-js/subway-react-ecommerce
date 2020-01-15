@@ -14,3 +14,10 @@ export const selectProductForDetails = product => {
     { product }
   );
 };
+
+export const triggerAddToShoppingCart = product => {
+  Subway.selectAggregate(AGGREGATE_NAME).sendCommand(
+    Commands.TRIGGER_ADD_TO_SHOPPING_CART,
+    { product }
+  );
+};

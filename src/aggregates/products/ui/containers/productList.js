@@ -14,7 +14,10 @@ import { useObserveAggregateStateOnce } from "../../../../subwayUtils/";
 
 import { AGGREGATE_NAME as PRODUCTS_AGGREGATE_NAME } from "../../";
 
-import { selectProductForDetails } from "../../commandCreators";
+import {
+  selectProductForDetails,
+  triggerAddToShoppingCart
+} from "../../commandCreators";
 
 import { AddToCartButton } from "../components/addToCartButton";
 
@@ -29,8 +32,8 @@ export function ProductList() {
   return (
     <Grid columns={3}>
       {productList &&
-        productList.map(
-          ({
+        productList.map(product => {
+          const {
             id,
             img,
             title,
@@ -40,7 +43,8 @@ export function ProductList() {
             showDetailsButton = false,
             newPrice = null,
             ccy
-          }) => (
+          } = product;
+          return (
             <Grid.Column key={id}>
               <Card>
                 {newPrice && (
@@ -71,19 +75,7 @@ export function ProductList() {
                       basic
                       size="small"
                       color="teal"
-                      onClick={() =>
-                        selectProductForDetails({
-                          id,
-                          img,
-                          title,
-                          price,
-                          rating,
-                          reviewsCount,
-                          showDetailsButton,
-                          newPrice,
-                          ccy
-                        })
-                      }
+                      onClick={() => selectProductForDetails(product)}
                     >
                       <Button.Content>
                         <Icon name="magnify" /> Product details
@@ -126,7 +118,11 @@ export function ProductList() {
                   )}
                 </Card.Content>
                 <Card.Content extra>
-                  <AddToCartButton size="small" />
+                  <AddToCartButton
+                    size="small"
+                    product={product}
+                    onClick={triggerAddToShoppingCart}
+                  />
                   {
                     // <Button size="small" fluid color="teal">
                     //   <Button.Content>
@@ -137,8 +133,8 @@ export function ProductList() {
                 </Card.Content>
               </Card>
             </Grid.Column>
-          )
-        )}
+          );
+        })}
     </Grid>
   );
 }

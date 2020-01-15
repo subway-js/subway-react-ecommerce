@@ -10,8 +10,8 @@ export const initialState = {
   selectedProduct: null
 };
 
-export { cmdHandlers } from "./handlers/commands";
-export { evtHandlers } from "./handlers/events";
+// export { cmdHandlers } from "./handlers/commands";
+// export { evtHandlers } from "./handlers/events";
 
 export { ProductList } from "./ui/containers/productList";
 export { ProductDetails } from "./ui/containers/productDetails";
