@@ -16,7 +16,7 @@ export function HeaderShoppingCartDropdown({ size }) {
     SHOPPING_CART_AGGREGATE_NAME,
     aggregateState => aggregateState || {}
   );
-  const { items = new Map(), total } = shoppingData || {};
+  const { items = new Map() } = shoppingData || {};
   const cartItems = Array.from(items).map(item => ({ ...item[1] }));
   return (
     <Popup

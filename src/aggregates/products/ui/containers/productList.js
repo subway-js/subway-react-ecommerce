@@ -40,7 +40,6 @@ export function ProductList() {
             price,
             rating,
             reviewsCount,
-            showDetailsButton = false,
             newPrice = null,
             ccy
           } = product;

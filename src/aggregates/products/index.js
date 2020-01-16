@@ -1,4 +1,3 @@
-import { Subway } from "../../subwayUtils/";
 import { loadProductsList } from "./commandCreators";
 
 import { cmdHandlers } from "./handlers/commands";

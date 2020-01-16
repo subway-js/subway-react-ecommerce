@@ -8,14 +8,14 @@ export const cmdSelectHomePageHandler = {
   })
 };
 
-export const cmdSelectProductPageHandler = {
-  command: Commands.SELECT_PRODUCT_PAGE,
-  handler: () => ({
-    events: [{ id: Events.PRODUCT_PAGE_SELECTED }]
-  })
-};
+// export const cmdSelectProductPageHandler = {
+//   command: Commands.SELECT_PRODUCT_PAGE,
+//   handler: () => ({
+//     events: [{ id: Events.PRODUCT_PAGE_SELECTED }]
+//   })
+// };
 
 export const cmdHandlers = [
-  cmdSelectHomePageHandler,
-  cmdSelectProductPageHandler
+  cmdSelectHomePageHandler
+  // cmdSelectProductPageHandler
 ];
