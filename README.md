@@ -2,9 +2,15 @@ This project is a playground for [SubwayJS](https://github.com/subway-js/subway)
 
 It was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Live demo [here](https://subway-js.github.io/subway-react-ecommerce/)
+
 ## Available Scripts
 
 In the project directory, you can run:
+
+#### `yarn install`
+
+To install all the dependencies.
 
 #### `yarn start`
 
