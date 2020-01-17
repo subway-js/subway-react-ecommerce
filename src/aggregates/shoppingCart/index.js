@@ -17,9 +17,12 @@ export const aggregateConfig = {
   cmdHandlers,
   evtHandlers,
   bootstrap: () => {
-    Subway.react({
-      onEvent: "ProductsAggregate.ADD_TO_SHOPPING_CART_TRIGGERED",
-      triggeredEvent: `${AGGREGATE_NAME}.${Events.PRODUCT_ADDED_TO_CART}`
-    });
+    Subway.selectAggregate("ProductsAggregate").triggerAfter(
+      "ADD_TO_SHOPPING_CART_TRIGGERED",
+      {
+        targetAggregate: AGGREGATE_NAME,
+        triggeredEvent: Events.PRODUCT_ADDED_TO_CART
+      }
+    );
   }
 };

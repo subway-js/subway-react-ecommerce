@@ -1,7 +1,6 @@
 import { Subway } from "../../subwayUtils/";
 
 import { Events } from "./verbs/events";
-// import { selectProductPage } from "./commandCreators";
 
 import { cmdHandlers } from "./handlers/commands";
 import { evtHandlers } from "./handlers/events";
@@ -21,9 +20,12 @@ export const aggregateConfig = {
   cmdHandlers,
   evtHandlers,
   bootstrap: () => {
-    Subway.react({
-      onEvent: "ProductsAggregate.ProductSelectedForDetails",
-      triggeredEvent: `${AGGREGATE_NAME}.${Events.PRODUCT_PAGE_SELECTED}`
-    });
+    Subway.selectAggregate("ProductsAggregate").triggerAfter(
+      "ProductSelectedForDetails",
+      {
+        targetAggregate: AGGREGATE_NAME,
+        triggeredEvent: Events.PRODUCT_PAGE_SELECTED
+      }
+    );
   }
 };

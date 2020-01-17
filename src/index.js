@@ -7,6 +7,7 @@ import { aggregateConfig as productAggregateConfig } from "./aggregates/products
 import { aggregateConfig as navigationAggregateConfig } from "./aggregates/navigation";
 import { aggregateConfig as shoppingCartAggregateConfig } from "./aggregates/shoppingCart";
 
+// TODO move to SubwayJS utils?
 initAggregates([
   productAggregateConfig,
   navigationAggregateConfig,
