@@ -7,6 +7,7 @@ import { Navbar, Breadcrumbs } from "./aggregates/navigation";
 import { ProductList, ProductDetails } from "./aggregates/products";
 import { HeaderShoppingCartDropdown } from "./aggregates/shoppingCart";
 
+import { LoginModal } from "./aggregates/session";
 function App() {
   const [currentPage] = useObserveAggregateState(
     "NavigationAggregate",
@@ -16,6 +17,7 @@ function App() {
   return (
     <div style={{ background: "#f8f9fa" }}>
       <Container>
+        <LoginModal />
         <Navbar shoppingCartMenuItem={<HeaderShoppingCartDropdown />} />
         <br />
         <br />

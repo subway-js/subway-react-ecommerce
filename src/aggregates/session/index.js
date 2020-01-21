@@ -9,3 +9,5 @@ export const aggregateConfig = {
   name: AGGREGATE_NAME,
   initialState
 };
+
+export { LoginModal } from "./ui/containers/loginModal";
