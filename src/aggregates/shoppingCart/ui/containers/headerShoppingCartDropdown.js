@@ -6,7 +6,8 @@ import {
   Icon,
   Segment,
   Item,
-  Label
+  Label,
+  Dropdown
 } from "semantic-ui-react";
 import { AGGREGATE_NAME as SHOPPING_CART_AGGREGATE_NAME } from "../../";
 import { useObserveAggregateState } from "../../../../subwayUtils/";
@@ -18,18 +19,15 @@ export function HeaderShoppingCartDropdown({ size }) {
   );
   const { items = new Map() } = shoppingData || {};
   const cartItems = Array.from(items).map(item => ({ ...item[1] }));
+  const itemsTotal = cartItems.reduce((acc, curr) => +acc + +curr.count, 0);
   return (
     <Popup
       on="click"
       position="bottom right"
       trigger={
-        <Button basic color="teal" style={{ marginLeft: "0.5em" }}>
-          <Icon name="shopping cart" color="teal" />
-          {cartItems && cartItems.length > 0 && (
-            <Label circular size="tiny" color="teal">
-              {cartItems.reduce((acc, curr) => +acc + +curr.count, 0)}
-            </Label>
-          )}
+        <Button color="teal" icon>
+          <Icon name="shopping cart" />
+          {itemsTotal > 0 && `    (${itemsTotal})`}
         </Button>
       }
     >

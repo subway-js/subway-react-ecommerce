@@ -6,9 +6,11 @@ import { initAggregates } from "./subwayUtils";
 import { aggregateConfig as productAggregateConfig } from "./aggregates/products";
 import { aggregateConfig as navigationAggregateConfig } from "./aggregates/navigation";
 import { aggregateConfig as shoppingCartAggregateConfig } from "./aggregates/shoppingCart";
+import { aggregateConfig as sessionAggregateConfig } from "./aggregates/session";
 
 // TODO move to SubwayJS utils?
 initAggregates([
+  sessionAggregateConfig,
   productAggregateConfig,
   navigationAggregateConfig,
   shoppingCartAggregateConfig

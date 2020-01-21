@@ -4,3 +4,8 @@ export const initialState = {
   username: null,
   gwtToken: null
 };
+
+export const aggregateConfig = {
+  name: AGGREGATE_NAME,
+  initialState
+};
