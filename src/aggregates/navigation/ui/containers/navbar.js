@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Menu, Header, Dropdown, Button } from "semantic-ui-react";
 import { useObserveAggregateState } from "../../../../subwayUtils";
-
+import { showLoginScreen } from "../../commandCreators";
 export function Navbar({ shoppingCartMenuItem }) {
   const [isUserLogged] = useObserveAggregateState(
     "SessionAggregate",
@@ -18,7 +18,12 @@ export function Navbar({ shoppingCartMenuItem }) {
         <Menu.Item position="right">
           {shoppingCartMenuItem}
           {!isUserLogged && (
-            <Button style={{ marginLeft: 10 }} color="teal" basic>
+            <Button
+              onClick={() => showLoginScreen()}
+              style={{ marginLeft: 10 }}
+              color="teal"
+              basic
+            >
               {" "}
               Log-in
             </Button>
