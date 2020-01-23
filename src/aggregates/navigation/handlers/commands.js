@@ -11,7 +11,7 @@ export const cmdSelectHomePageHandler = {
 export const cmdRequestLoginModalHandler = {
   command: Commands.REQUEST_LOGIN_MODAL,
   handler: () => ({
-    events: [{ id: Events.LOGIN_MODAL_REQUESTED }]
+    events: [{ id: Events.LOGIN_MODAL_REQUEST_SUBMITTED }]
   })
 };
 

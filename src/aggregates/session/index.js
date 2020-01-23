@@ -20,13 +20,10 @@ export const aggregateConfig = {
     // TODO quick mapping command => event in nav login button
 
     // TODO implement ASTERISK selector
-    Subway.selectAggregate("NavigationAggregate").triggerAfter(
-      "LOGIN_MODAL_REQUESTED",
-      {
-        targetAggregate: AGGREGATE_NAME,
-        triggeredEvent: Events.LOGIN_MODAL_REQUESTED
-      }
-    );
+    Subway.selectAggregate("*").triggerAfter("LOGIN_MODAL_REQUEST_SUBMITTED", {
+      targetAggregate: AGGREGATE_NAME,
+      triggeredEvent: Events.LOGIN_MODAL_REQUESTED
+    });
   }
 };
 
