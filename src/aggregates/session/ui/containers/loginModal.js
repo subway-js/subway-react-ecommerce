@@ -1,9 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 import { useObserveAggregateState } from "../../../../subwayUtils";
-import { hideLoginScreen } from "../../commandCreators";
+import {
+  hideLoginScreen,
+  simulateSuccessfulLogin
+} from "../../commandCreators";
 
 export function LoginModal() {
+  const [authInProgress, setAuthInProgress] = useState(false);
   const [isLoginModalVisible] = useObserveAggregateState(
     "SessionAggregate",
     aggregateState => aggregateState.loginModalVisible
@@ -34,12 +38,24 @@ export function LoginModal() {
         </Form>
       </Modal.Content>
       <Modal.Actions>
-        <Button color="grey" onClick={() => hideLoginScreen()}>
+        <Button
+          disabled={authInProgress}
+          color="grey"
+          onClick={() => hideLoginScreen()}
+        >
           <Icon name="cancel" /> Cancel
         </Button>
 
-        <Button color="teal" onClick={() => {}}>
-          <Icon name="checkmark" /> Login
+        <Button
+          loading={authInProgress}
+          disabled={authInProgress}
+          color="teal"
+          onClick={() => {
+            setAuthInProgress(true);
+            simulateSuccessfulLogin("MichaelJordan23", "aPassword");
+          }}
+        >
+          <Icon name="checkmark" /> Simulate Successful Login
         </Button>
       </Modal.Actions>
     </Modal>

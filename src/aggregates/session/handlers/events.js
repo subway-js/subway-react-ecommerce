@@ -21,7 +21,21 @@ export const evtLoginModalRequestedHandler = {
   }
 };
 
+export const evtUserSuccessfullyAuthenticatedHandler = {
+  command: Events.USER_SUCCESSFULLY_AUTHENTICATED,
+  handler: (aggregateState, { jwt, username }) => ({
+    proposal: {
+      ...aggregateState,
+      userLogged: true,
+      loginModalVisible: false,
+      jwt,
+      username
+    }
+  })
+};
+
 export const evtHandlers = [
   evtUpdateLoginModalVisibilityHandler,
-  evtLoginModalRequestedHandler
+  evtLoginModalRequestedHandler,
+  evtUserSuccessfullyAuthenticatedHandler
 ];

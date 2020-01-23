@@ -8,7 +8,9 @@ import { evtHandlers } from "./handlers/events";
 export const AGGREGATE_NAME = "SessionAggregate";
 export const initialState = {
   userLogged: false,
-  loginModalVisible: false
+  loginModalVisible: false,
+  jwt: null,
+  username: null
 };
 
 export const aggregateConfig = {
