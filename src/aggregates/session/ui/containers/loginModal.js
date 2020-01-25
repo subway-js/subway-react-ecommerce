@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 import { useObserveAggregateState } from "../../../../subwayUtils";
 import {
@@ -12,6 +12,10 @@ export function LoginModal() {
     "SessionAggregate",
     aggregateState => aggregateState.loginModalVisible
   );
+
+  useEffect(() => {
+    setAuthInProgress(false);
+  }, [isLoginModalVisible]);
 
   return (
     <Modal

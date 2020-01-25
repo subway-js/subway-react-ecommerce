@@ -21,6 +21,21 @@ export const evtLoginModalRequestedHandler = {
   }
 };
 
+export const evtLogoutUserRequestedHandler = {
+  command: Events.LOGOUT_USER_REQUESTED,
+  handler: aggregateState => {
+    return {
+      proposal: {
+        ...aggregateState,
+        userLogged: false,
+        jwt: null,
+        username: null
+      },
+      events: [{ id: Events.USER_LOGGED_OUT }]
+    };
+  }
+};
+
 export const evtUserSuccessfullyAuthenticatedHandler = {
   command: Events.USER_SUCCESSFULLY_AUTHENTICATED,
   handler: (aggregateState, { jwt, username }) => ({
@@ -37,5 +52,6 @@ export const evtUserSuccessfullyAuthenticatedHandler = {
 export const evtHandlers = [
   evtUpdateLoginModalVisibilityHandler,
   evtLoginModalRequestedHandler,
-  evtUserSuccessfullyAuthenticatedHandler
+  evtUserSuccessfullyAuthenticatedHandler,
+  evtLogoutUserRequestedHandler
 ];
