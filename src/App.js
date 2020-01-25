@@ -4,7 +4,7 @@ import { Container } from "semantic-ui-react";
 import { useObserveAggregateState } from "./subwayUtils/";
 
 import { Navbar, Breadcrumbs } from "./aggregates/navigation";
-import { ProductList, ProductDetails } from "./aggregates/products";
+import { ProductList, ProductDetails, Disclaimer } from "./aggregates/products";
 import { HeaderShoppingCartDropdown } from "./aggregates/shoppingCart";
 
 import { LoginModal } from "./aggregates/session";
@@ -28,6 +28,7 @@ function App() {
         <br />
         {(!currentPage || currentPage) === "home" && <ProductList />}
         {currentPage === "product" && <ProductDetails />}
+        <Disclaimer />
       </Container>
     </div>
   );

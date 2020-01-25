@@ -11,6 +11,7 @@ const initialState = {
 
 export { ProductList } from "./ui/containers/productList";
 export { ProductDetails } from "./ui/containers/productDetails";
+export { Disclaimer } from "./ui/components/disclaimer";
 
 export const aggregateConfig = {
   name: AGGREGATE_NAME,
