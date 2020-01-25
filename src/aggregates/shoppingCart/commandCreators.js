@@ -8,3 +8,7 @@ export const addProductToCart = product => {
     { product }
   );
 };
+
+export const goToCheckout = product => {
+  Subway.selectAggregate(AGGREGATE_NAME).sendCommand(Commands.GO_TO_CHECKOUT);
+};

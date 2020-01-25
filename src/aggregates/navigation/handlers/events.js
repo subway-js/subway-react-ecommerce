@@ -20,7 +20,18 @@ export const evtProductPageSelectedHandler = {
   })
 };
 
+export const evtCheckoutPageRequestSubmittedHandler = {
+  command: Events.CHECKOUT_PAGE_REQUEST_SUBMITTED,
+  handler: aggregateState => ({
+    proposal: {
+      ...aggregateState,
+      currentPage: "checkout"
+    }
+  })
+};
+
 export const evtHandlers = [
   evtHomePageSelectedHandler,
-  evtProductPageSelectedHandler
+  evtProductPageSelectedHandler,
+  evtCheckoutPageRequestSubmittedHandler
 ];

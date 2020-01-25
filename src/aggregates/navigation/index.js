@@ -27,5 +27,10 @@ export const aggregateConfig = {
         triggeredEvent: Events.PRODUCT_PAGE_SELECTED
       }
     );
+
+    Subway.selectAggregate("*").triggerAfter("CHECKOUT_PAGE_REQUESTED", {
+      targetAggregate: AGGREGATE_NAME,
+      triggeredEvent: Events.CHECKOUT_PAGE_REQUEST_SUBMITTED
+    });
   }
 };

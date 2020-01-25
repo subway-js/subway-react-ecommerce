@@ -12,6 +12,7 @@ export const evtProductsListLoadedHandler = {
   }
 };
 
+// TODO review communication messaging logic
 export const evtProductSelectedForDetailsHandler = {
   command: Events.PRODUCT_SELECTED_FOR_DETAILS,
   handler: (aggregateState, { product }) => {

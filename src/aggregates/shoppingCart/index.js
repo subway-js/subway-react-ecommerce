@@ -10,6 +10,7 @@ export const AGGREGATE_NAME = "ShoppingCartAggregate";
 export {
   HeaderShoppingCartDropdown
 } from "./ui/containers/headerShoppingCartDropdown";
+export { Checkout } from "./ui/containers/checkout";
 
 export const aggregateConfig = {
   name: AGGREGATE_NAME,

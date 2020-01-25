@@ -11,6 +11,7 @@ import {
 } from "semantic-ui-react";
 import { AGGREGATE_NAME as SHOPPING_CART_AGGREGATE_NAME } from "../../";
 import { useObserveAggregateState } from "../../../../subwayUtils/";
+import { goToCheckout } from "../../commandCreators";
 
 export function HeaderShoppingCartDropdown({ size }) {
   const [shoppingData] = useObserveAggregateState(
@@ -81,7 +82,7 @@ export function HeaderShoppingCartDropdown({ size }) {
 
             <Item>
               <Item.Content>
-                <Button fluid color="teal">
+                <Button fluid color="teal" onClick={() => goToCheckout()}>
                   Checkout
                 </Button>
               </Item.Content>

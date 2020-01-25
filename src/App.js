@@ -5,7 +5,10 @@ import { useObserveAggregateState } from "./subwayUtils/";
 
 import { Navbar, Breadcrumbs } from "./aggregates/navigation";
 import { ProductList, ProductDetails, Disclaimer } from "./aggregates/products";
-import { HeaderShoppingCartDropdown } from "./aggregates/shoppingCart";
+import {
+  HeaderShoppingCartDropdown,
+  Checkout
+} from "./aggregates/shoppingCart";
 
 import { LoginModal } from "./aggregates/session";
 function App() {
@@ -26,8 +29,10 @@ function App() {
         <Breadcrumbs />
         <br />
         <br />
-        {(!currentPage || currentPage) === "home" && <ProductList />}
+        {(!currentPage || currentPage === "home") && <ProductList />}
         {currentPage === "product" && <ProductDetails />}
+        {currentPage === "checkout" && <Checkout />}
+
         <Disclaimer />
       </Container>
     </div>
