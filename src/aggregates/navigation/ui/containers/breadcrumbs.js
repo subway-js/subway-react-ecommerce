@@ -46,6 +46,15 @@ export function Breadcrumbs() {
                 </Breadcrumb.Section>
               </>
             )}
+          {currentPage === "checkout" && (
+            <>
+              <Breadcrumb.Section active link onClick={() => selectHomePage()}>
+                Products
+              </Breadcrumb.Section>
+              <Breadcrumb.Divider />
+              <Breadcrumb.Section active>Checkout</Breadcrumb.Section>
+            </>
+          )}
         </Breadcrumb>
       </Grid.Column>
       {currentPage === "product" && (
