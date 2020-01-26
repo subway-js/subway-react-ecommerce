@@ -18,3 +18,9 @@ export const showLoginScreen = () => {
     Commands.REQUEST_LOGIN_MODAL
   );
 };
+
+export const submitSuccessfulOrder = items => {
+  Subway.selectAggregate(AGGREGATE_NAME).sendCommand(Commands.SUBMIT_ORDER, {
+    items
+  });
+};

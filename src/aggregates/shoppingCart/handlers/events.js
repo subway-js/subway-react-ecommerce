@@ -22,4 +22,19 @@ export const evtProductAddedToCartHandler = {
   }
 };
 
-export const evtHandlers = [evtProductAddedToCartHandler];
+export const evtOrderProcessedHandler = {
+  command: Events.ORDER_PROCESSED,
+  handler: (aggregateState, { successful }) => {
+    // TODO check successful = fakse
+    return {
+      proposal: {
+        items: new Map()
+      }
+    };
+  }
+};
+
+export const evtHandlers = [
+  evtProductAddedToCartHandler,
+  evtOrderProcessedHandler
+];

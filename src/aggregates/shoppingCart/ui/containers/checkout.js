@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Table,
   Label,
@@ -10,10 +10,27 @@ import {
 } from "semantic-ui-react";
 
 import { AGGREGATE_NAME as SHOPPING_CART_AGGREGATE_NAME } from "../../";
-import { useObserveAggregateState } from "../../../../subwayUtils/";
-import { showLoginScreen } from "../../commandCreators";
+import {
+  useObserveAggregateState,
+  useSpyAggregateEvent
+} from "../../../../subwayUtils/";
+import { showLoginScreen, submitSuccessfulOrder } from "../../commandCreators";
 
 export function Checkout() {
+  const [orderSuccessful = false] = useSpyAggregateEvent(
+    SHOPPING_CART_AGGREGATE_NAME,
+    "ORDER_PROCESSED",
+    ({ successful }) => successful
+  );
+
+  const [loading, setLoading] = useState(false);
+  const [checkoutCompleted, setCheckoutCompleted] = useState(false);
+
+  useEffect(() => {
+    setCheckoutCompleted(orderSuccessful);
+    setLoading(false);
+  }, [checkoutCompleted, orderSuccessful]);
+
   const [shoppingMap] = useObserveAggregateState(
     SHOPPING_CART_AGGREGATE_NAME,
     aggregateState => aggregateState.items || []
@@ -38,8 +55,26 @@ export function Checkout() {
     )
     .toFixed(2);
 
+  if (!loading && checkoutCompleted) {
+    return (
+      <Header
+        color="teal"
+        style={{ marginTop: 100 }}
+        as="h2"
+        icon
+        textAlign="center"
+      >
+        <Icon name="winner" />
+        Order processed successfully!
+        <Header.Subheader>
+          Thanks {username}! You will receive your products tomorrow!
+        </Header.Subheader>
+      </Header>
+    );
+  }
   return (
     <>
+      <div>{loading}</div>
       <Table columns={4} color="teal">
         <Table.Header>
           <Table.Row>
@@ -55,8 +90,8 @@ export function Checkout() {
         </Table.Header>
 
         <Table.Body>
-          {list.map(({ title, count, newPrice, price, ccy, img }) => (
-            <Table.Row>
+          {list.map(({ id, title, count, newPrice, price, ccy, img }) => (
+            <Table.Row key={id}>
               <Table.Cell>
                 {newPrice && (
                   <Label color="orange" size="mini" ribbon>
@@ -106,7 +141,7 @@ export function Checkout() {
         </Table.Footer>
       </Table>
 
-      <Message color="teal" attached header="Buy in one click!">
+      <Message color="teal" attached>
         <Header as="h4">
           {username
             ? `Hi ${username}, you can buy in one click!`
@@ -118,12 +153,19 @@ export function Checkout() {
         </Header>
         <br />
 
-        {isUserLoggedIn && (
-          <Button color="orange" floated="right">
+        {!checkoutCompleted && !loading && isUserLoggedIn && (
+          <Button
+            color="orange"
+            floated="right"
+            onClick={() => {
+              setLoading(true);
+              submitSuccessfulOrder(list);
+            }}
+          >
             Buy in 1-click!
           </Button>
         )}
-        {!isUserLoggedIn && (
+        {!checkoutCompleted && !loading && !isUserLoggedIn && (
           <Button
             animated="fade"
             color="teal"
@@ -134,6 +176,12 @@ export function Checkout() {
             <Button.Content hidden>Login first</Button.Content>
           </Button>
         )}
+        {!checkoutCompleted && loading && (
+          <Button color="orange" disabled floated="right" loading>
+            Buy in 1-click!
+          </Button>
+        )}
+        {!loading && checkoutCompleted && "FINALIZED"}
 
         <br />
         <br />

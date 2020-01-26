@@ -1,5 +1,6 @@
 import { Commands } from "../verbs/commands";
 import { Events } from "../verbs/events";
+import * as MockAPI from "../api/mockApi";
 
 export const cmdGoToCheckoutHandler = {
   command: Commands.GO_TO_CHECKOUT,
@@ -15,7 +16,29 @@ export const cmdRequestLoginModalHandler = {
   })
 };
 
+export const cmdSubmitOrderHandler = {
+  command: Commands.SUBMIT_ORDER,
+  handler: async (aggregateState, { items }) => {
+    const orderSubmissionResult = await MockAPI.submitSuccessfulOrder(items);
+    let events = [];
+    const { status } = orderSubmissionResult;
+    if (status === "ok") {
+      events = events.concat([
+        {
+          id: Events.ORDER_PROCESSED,
+          payload: { successful: true, items }
+        }
+      ]);
+    }
+
+    return {
+      events
+    };
+  }
+};
+
 export const cmdHandlers = [
   cmdGoToCheckoutHandler,
-  cmdRequestLoginModalHandler
+  cmdRequestLoginModalHandler,
+  cmdSubmitOrderHandler
 ];
