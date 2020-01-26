@@ -57,7 +57,7 @@ export function Breadcrumbs() {
           )}
         </Breadcrumb>
       </Grid.Column>
-      {currentPage === "product" && (
+      {(currentPage === "product" || currentPage === "checkout") && (
         <Grid.Column textAlign="right">
           <Button
             onClick={() => selectHomePage()}
