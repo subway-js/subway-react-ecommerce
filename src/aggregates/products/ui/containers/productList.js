@@ -58,6 +58,7 @@ export function ProductList() {
                   />
                 )}
                 <Dimmer.Dimmable
+                  style={{ padding: 40, backgroundColor: "white" }}
                   as={Image}
                   onMouseOver={() => {
                     setDetailsButtonHoveredId(id);

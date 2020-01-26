@@ -1,59 +1,114 @@
 export const data = [
   {
-    id: 1,
-    img: "images/products/11.jpg",
-    title: "GoPro HERO7 Camera",
-    price: "299.00",
-    ccy: "$",
-    rating: "4",
-    reviewsCount: 132
-  },
-  {
-    id: 2,
-    img: "images/products/5.jpg",
-    title: "Leather Sleeve - Macbook 13’’",
-    price: "3753.00",
-    newPrice: "3099.00",
-    ccy: "$",
-    rating: "4",
-    reviewsCount: 56
-  },
-  {
-    id: 3,
-    img: "images/products/4.jpg",
-    title: "Fjällräven Kånken Backpack Blue Ridge",
-    price: "84.00",
+    id: 10,
+    img: "images/products/air-jordan-1-i.jpg",
+    title: "Air Jordan I",
+    price: "199.00",
+    newPrice: "149.99",
     ccy: "$",
     rating: "5",
-    reviewsCount: 85
+    reviewsCount: 54
   },
   {
-    id: 4,
-    img: "images/products/12.jpg",
-    title: "Off-White Odsy-1000 Low-Top Sneakers",
-    price: "815.00",
-    newPrice: "799.00",
+    id: 11,
+    img: "images/products/air-jordan-original-2.jpg",
+    title: "Air Jordan II",
+    price: "199.00",
+    newPrice: "249.00",
     ccy: "$",
     rating: "4",
-    reviewsCount: 422
+    reviewsCount: 12
   },
   {
-    id: 5,
-    img: "images/products/9.jpg",
-    title: "Logitech - Headset for gaming",
-    price: "19.00",
-    newPrice: "14.99",
+    id: 12,
+    img: "images/products/air-jordan-3.jpg",
+    title: "Air Jordan III",
+    price: "199.00",
     ccy: "$",
-    rating: "3",
+    rating: "4",
+    reviewsCount: 43
+  },
+  {
+    id: 13,
+    img: "images/products/air-jordan-4.jpg",
+    title: "Air Jordan IV",
+    price: "199.00",
+    ccy: "$",
+    rating: "2",
+    reviewsCount: 76
+  },
+  {
+    id: 14,
+    img: "images/products/air-jordan-og-5-fire-red.jpeg",
+    title: "Air Jordan V",
+    price: "199.00",
+    ccy: "$",
+    rating: "5",
     reviewsCount: 23
   },
   {
-    id: 6,
-    img: "images/products/10.jpg",
-    title: "Apple Homkit - Ecobee3 Lite Smart Thermostat",
-    price: "169.95",
+    id: 15,
+    img: "images/products/air-jordan-6.jpg",
+    title: "Air Jordan VI",
+    price: "199.00",
     ccy: "$",
     rating: "4",
-    reviewsCount: 198
+    reviewsCount: 54
+  },
+  {
+    id: 16,
+    img: "images/products/air-jordan-7.jpg",
+    title: "Air Jordan VII",
+    price: "199.00",
+    ccy: "$",
+    rating: "2",
+    reviewsCount: 13
+  },
+  {
+    id: 17,
+    img: "images/products/air-jordan-8.jpg",
+    title: "Air Jordan VII",
+    price: "199.00",
+    ccy: "$",
+    rating: "4",
+    reviewsCount: 43
+  },
+  {
+    id: 18,
+    img: "images/products/air-jordan-9.jpg",
+    title: "Air Jordan IX",
+    price: "199.00",
+    ccy: "$",
+    rating: "4",
+    reviewsCount: 55
+  },
+  {
+    id: 19,
+    img: "images/products/air-jordan-10.jpg",
+    title: "Air Jordan X",
+    price: "199.00",
+    ccy: "$",
+    rating: "5",
+    reviewsCount: 12
+  },
+  {
+    id: 20,
+    img: "images/products/air-jordan-11.jpg",
+    title: "Air Jordan XI",
+    price: "199.00",
+    newPrice: "149.00",
+    ccy: "$",
+    rating: "5",
+    reviewsCount: 23
+  },
+  {
+    id: 21,
+    img: "images/products/air-jordan-12.jpg",
+    title: "Air Jordan XII",
+    price: "199.00",
+    newPrice: "149.00",
+    ccy: "$",
+    rating: "5",
+    reviewsCount: 132
   }
 ];

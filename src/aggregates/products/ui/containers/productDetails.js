@@ -27,7 +27,7 @@ export function ProductDetails() {
       {" "}
       {product && (
         <Segment.Group horizontal>
-          <Segment>
+          <Segment padded="very">
             <Image src={product.img} wrapped />
 
             <Segment.Group horizontal compact>

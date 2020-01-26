@@ -1,5 +1,13 @@
 import React from "react";
-import { Table, Label, Header, Message, Button, Icon } from "semantic-ui-react";
+import {
+  Table,
+  Label,
+  Header,
+  Message,
+  Button,
+  Icon,
+  Image
+} from "semantic-ui-react";
 
 import { AGGREGATE_NAME as SHOPPING_CART_AGGREGATE_NAME } from "../../";
 import { useObserveAggregateState } from "../../../../subwayUtils/";
@@ -25,6 +33,8 @@ export function Checkout() {
       0
     )
     .toFixed(2);
+
+  console.log(list);
   return (
     <>
       <Table columns={4} color="teal">
@@ -32,13 +42,17 @@ export function Checkout() {
           <Table.Row>
             <Table.HeaderCell width={5}>PRODUCT</Table.HeaderCell>
             <Table.HeaderCell textAlign="center">QUANTITY</Table.HeaderCell>
-            <Table.HeaderCell textAlign="center">UNIT PRICE</Table.HeaderCell>
-            <Table.HeaderCell textAlign="right">TOTAL</Table.HeaderCell>
+            <Table.HeaderCell width={5} textAlign="center">
+              UNIT PRICE
+            </Table.HeaderCell>
+            <Table.HeaderCell width={5} textAlign="right">
+              TOTAL
+            </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
         <Table.Body>
-          {list.map(({ title, count, newPrice, price, ccy }) => (
+          {list.map(({ title, count, newPrice, price, ccy, img }) => (
             <Table.Row>
               <Table.Cell>
                 {newPrice && (
@@ -46,10 +60,10 @@ export function Checkout() {
                     OFFER!
                   </Label>
                 )}
-
-                {title}
+                {title} <Image src={img} size="mini" />
               </Table.Cell>
-              <Table.Cell textAlign="center">{count}</Table.Cell>
+
+              <Table.Cell textAlign="center"> {count}</Table.Cell>
               <Table.Cell textAlign="center">
                 <Header as="h5">
                   <Header.Content>
