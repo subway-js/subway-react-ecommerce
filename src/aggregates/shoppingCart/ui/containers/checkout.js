@@ -3,6 +3,7 @@ import { Table, Label, Header, Message, Button, Icon } from "semantic-ui-react";
 
 import { AGGREGATE_NAME as SHOPPING_CART_AGGREGATE_NAME } from "../../";
 import { useObserveAggregateState } from "../../../../subwayUtils/";
+import { showLoginScreen } from "../../commandCreators";
 
 export function Checkout() {
   const [shoppingMap] = useObserveAggregateState(
@@ -99,12 +100,17 @@ export function Checkout() {
         <br />
 
         {isUserLoggedIn && (
-          <Button color="teal" floated="right">
+          <Button color="orange" floated="right">
             Buy in 1-click!
           </Button>
         )}
         {!isUserLoggedIn && (
-          <Button animated="fade" color="teal" floated="right">
+          <Button
+            animated="fade"
+            color="teal"
+            floated="right"
+            onClick={() => showLoginScreen()}
+          >
             <Button.Content visible>Buy in 1-click!</Button.Content>
             <Button.Content hidden>Login first</Button.Content>
           </Button>

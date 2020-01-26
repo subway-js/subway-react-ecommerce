@@ -7,4 +7,15 @@ export const cmdGoToCheckoutHandler = {
     events: [{ id: Events.CHECKOUT_PAGE_REQUESTED }]
   })
 };
-export const cmdHandlers = [cmdGoToCheckoutHandler];
+
+export const cmdRequestLoginModalHandler = {
+  command: Commands.REQUEST_LOGIN_MODAL,
+  handler: () => ({
+    events: [{ id: Events.LOGIN_MODAL_REQUEST_SUBMITTED }]
+  })
+};
+
+export const cmdHandlers = [
+  cmdGoToCheckoutHandler,
+  cmdRequestLoginModalHandler
+];
