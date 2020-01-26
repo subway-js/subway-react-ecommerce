@@ -6,8 +6,7 @@ import {
   Icon,
   Segment,
   Item,
-  Label,
-  Dropdown
+  Label
 } from "semantic-ui-react";
 import { AGGREGATE_NAME as SHOPPING_CART_AGGREGATE_NAME } from "../../";
 import { useObserveAggregateState } from "../../../../subwayUtils/";

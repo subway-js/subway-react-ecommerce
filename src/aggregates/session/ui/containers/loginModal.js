@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 import { useObserveAggregateState } from "../../../../subwayUtils";
 import {
@@ -21,9 +21,8 @@ export function LoginModal() {
     <Modal
       open={isLoginModalVisible}
       dimmer="blurring"
-      size="mini"
-      onClose={() => hideLoginScreen()}
       size="small"
+      onClose={() => hideLoginScreen()}
     >
       <Header color="teal" icon="user" content="Enter your credentials" />
       <Modal.Content>

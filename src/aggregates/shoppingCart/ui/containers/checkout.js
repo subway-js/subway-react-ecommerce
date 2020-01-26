@@ -23,6 +23,10 @@ export function Checkout() {
     "SessionAggregate",
     aggregateState => aggregateState.userLogged
   );
+  const [username] = useObserveAggregateState(
+    "SessionAggregate",
+    aggregateState => aggregateState.username
+  );
 
   const list = Array.from(shoppingMap || []).map(item => ({ ...item[1] }));
   const totalCurrency = list[0] ? list[0].ccy : null;
@@ -34,7 +38,6 @@ export function Checkout() {
     )
     .toFixed(2);
 
-  console.log(list);
   return (
     <>
       <Table columns={4} color="teal">
@@ -56,7 +59,7 @@ export function Checkout() {
             <Table.Row>
               <Table.Cell>
                 {newPrice && (
-                  <Label color="orange" ribbon>
+                  <Label color="orange" size="mini" ribbon>
                     OFFER!
                   </Label>
                 )}
@@ -105,7 +108,9 @@ export function Checkout() {
 
       <Message color="teal" attached header="Buy in one click!">
         <Header as="h4">
-          Buy in one click!
+          {username
+            ? `Hi ${username}, you can buy in one click!`
+            : "Buy in one click"}
           <Header.Subheader>
             Pay with your default paying method and receive tomorrow at your
             home address.

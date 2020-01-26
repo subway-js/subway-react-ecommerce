@@ -1,6 +1,5 @@
 import { Subway } from "../../subwayUtils/";
 import { Events } from "./verbs/events";
-import { Commands } from "./verbs/commands";
 
 import { cmdHandlers } from "./handlers/commands";
 import { evtHandlers } from "./handlers/events";
