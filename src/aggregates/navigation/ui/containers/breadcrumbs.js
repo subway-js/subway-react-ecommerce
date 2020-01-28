@@ -12,10 +12,9 @@ import { AGGREGATE_NAME as NAVIGATION_AGGREGATE_NAME } from "../../";
 export function Breadcrumbs() {
   const [selectedProduct] = useSpyAggregateEvent(
     "ProductsAggregate",
-    "ProductSelectedForDetails",
+    "NAVIGATE_TO_PRODUCT_DETAILS",
     ({ product }) => ({ id: product.id, title: product.title })
   );
-
   const [currentPage] = useObserveAggregateState(
     NAVIGATION_AGGREGATE_NAME,
     aggregateState => aggregateState.currentPage

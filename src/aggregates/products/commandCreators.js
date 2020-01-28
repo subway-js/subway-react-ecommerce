@@ -10,14 +10,14 @@ export const loadProductsList = () => {
 
 export const selectProductForDetails = product => {
   Subway.selectAggregate(AGGREGATE_NAME).sendCommand(
-    Commands.SELECT_PRODUCT_FOR_DETAILS,
+    "NAVIGATE_TO_PRODUCT_DETAILS",
     { product }
   );
 };
 
 export const triggerAddToShoppingCart = product => {
   Subway.selectAggregate(AGGREGATE_NAME).sendCommand(
-    Commands.TRIGGER_ADD_TO_SHOPPING_CART,
+    'ADD_TO_SHOPPING_CART',
     { product }
   );
 };

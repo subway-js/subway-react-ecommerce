@@ -1,6 +1,7 @@
 import { Subway } from "../../subwayUtils/";
 
 import { Events } from "./verbs/events";
+import { PublicCommands } from "./verbs/public";
 
 import { cmdHandlers } from "./handlers/commands";
 import { evtHandlers } from "./handlers/events";
@@ -20,15 +21,13 @@ export const aggregateConfig = {
   cmdHandlers,
   evtHandlers,
   bootstrap: () => {
-    Subway.selectAggregate("ProductsAggregate").triggerAfter(
-      "ProductSelectedForDetails",
-      {
-        targetAggregate: AGGREGATE_NAME,
-        triggeredEvent: Events.PRODUCT_PAGE_SELECTED
-      }
-    );
 
-    Subway.selectAggregate("*").triggerAfter("CHECKOUT_PAGE_REQUESTED", {
+    Subway.respondToCommand(PublicCommands.NAVIGATE_TO_PRODUCT_DETAILS, {
+      targetAggregate: AGGREGATE_NAME,
+      triggeredEvent: Events.PRODUCT_PAGE_SELECTED
+    });
+
+    Subway.respondToCommand(PublicCommands.NAVIGATE_TO_CHECKOUT_PAGE, {
       targetAggregate: AGGREGATE_NAME,
       triggeredEvent: Events.CHECKOUT_PAGE_REQUEST_SUBMITTED
     });

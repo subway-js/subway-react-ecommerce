@@ -8,22 +8,7 @@ export const cmdSelectHomePageHandler = {
   })
 };
 
-export const cmdRequestLoginModalHandler = {
-  command: Commands.REQUEST_LOGIN_MODAL,
-  handler: () => ({
-    events: [{ id: Events.LOGIN_MODAL_REQUEST_SUBMITTED }]
-  })
-};
-
-export const cmdLogoutUserHandler = {
-  command: Commands.REQUEST_USER_LOGOUT,
-  handler: () => ({
-    events: [{ id: Events.LOGOUT_USER_REQUEST_SUBMITTED }]
-  })
-};
 
 export const cmdHandlers = [
   cmdSelectHomePageHandler,
-  cmdRequestLoginModalHandler,
-  cmdLogoutUserHandler
 ];

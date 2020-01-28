@@ -2,6 +2,8 @@ import { Subway } from "../../subwayUtils/";
 
 // import { addProductToCart } from "./commandCreators";
 import { Events } from "./verbs/events";
+import { PublicCommands } from "./verbs/public";
+
 import { cmdHandlers } from "./handlers/commands";
 import { evtHandlers } from "./handlers/events";
 
@@ -18,12 +20,9 @@ export const aggregateConfig = {
   cmdHandlers,
   evtHandlers,
   bootstrap: () => {
-    Subway.selectAggregate("ProductsAggregate").triggerAfter(
-      "ADD_TO_SHOPPING_CART_TRIGGERED",
-      {
-        targetAggregate: AGGREGATE_NAME,
-        triggeredEvent: Events.PRODUCT_ADDED_TO_CART
-      }
-    );
+    Subway.respondToCommand(PublicCommands.ADD_TO_SHOPPING_CART, {
+      targetAggregate: AGGREGATE_NAME,
+      triggeredEvent: Events.PRODUCT_ADDED_TO_CART
+    });
   }
 };

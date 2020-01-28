@@ -36,14 +36,11 @@ export function Checkout() {
     aggregateState => aggregateState.items || []
   );
 
-  const [isUserLoggedIn] = useObserveAggregateState(
+  const [sessionData] = useObserveAggregateState(
     "SessionAggregate",
-    aggregateState => aggregateState.userLogged
   );
-  const [username] = useObserveAggregateState(
-    "SessionAggregate",
-    aggregateState => aggregateState.username
-  );
+
+  const { userLogged, username } = sessionData || {};
 
   const list = Array.from(shoppingMap || []).map(item => ({ ...item[1] }));
   const totalCurrency = list[0] ? list[0].ccy : null;
@@ -153,7 +150,7 @@ export function Checkout() {
         </Header>
         <br />
 
-        {!checkoutCompleted && !loading && isUserLoggedIn && (
+        {!checkoutCompleted && !loading && userLogged && (
           <Button
             color="orange"
             floated="right"
@@ -165,7 +162,7 @@ export function Checkout() {
             Buy in 1-click!
           </Button>
         )}
-        {!checkoutCompleted && !loading && !isUserLoggedIn && (
+        {!checkoutCompleted && !loading && !userLogged && (
           <Button
             animated="fade"
             color="teal"
@@ -186,7 +183,7 @@ export function Checkout() {
         <br />
         <br />
       </Message>
-      {!isUserLoggedIn && (
+      {!userLogged && (
         <Message attached="bottom" warning>
           <Icon name="info" />
           If you are not logged in, we will ask for your credentials before

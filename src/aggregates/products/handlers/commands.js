@@ -14,24 +14,14 @@ export const cmdLoadProductsListHandler = {
 };
 
 export const cmdSelectProductForDetailsHandler = {
-  command: Commands.SELECT_PRODUCT_FOR_DETAILS,
+  command: "NAVIGATE_TO_PRODUCT_DETAILS",
   handler: (aggregateState, { product }) => ({
     // TODO load product details???
     events: [{ id: Events.PRODUCT_SELECTED_FOR_DETAILS, payload: { product } }]
-  })
-};
-export const cmdTriggerAddToShoppingCartHandler = {
-  command: Commands.TRIGGER_ADD_TO_SHOPPING_CART,
-  handler: (aggregateState, { product }) => ({
-    // TODO allow external aggregate?
-    events: [
-      { id: Events.ADD_TO_SHOPPING_CART_TRIGGERED, payload: { product } }
-    ]
   })
 };
 
 export const cmdHandlers = [
   cmdLoadProductsListHandler,
   cmdSelectProductForDetailsHandler,
-  cmdTriggerAddToShoppingCartHandler
 ];

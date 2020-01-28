@@ -10,12 +10,12 @@ export const addProductToCart = product => {
 };
 
 export const goToCheckout = product => {
-  Subway.selectAggregate(AGGREGATE_NAME).sendCommand(Commands.GO_TO_CHECKOUT);
+  Subway.selectAggregate(AGGREGATE_NAME).sendCommand("NAVIGATE_TO_CHECKOUT_PAGE");
 };
 
 export const showLoginScreen = () => {
   Subway.selectAggregate(AGGREGATE_NAME).sendCommand(
-    Commands.REQUEST_LOGIN_MODAL
+    'SHOW_LOGIN_MODAL'
   );
 };
 

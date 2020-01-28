@@ -14,7 +14,7 @@ export const initHandlers = (aggregate, cmdHandlers, evtHandlers) => {
 // NOTE provide helper in the library itself?
 export const initAggregates = aggregates => {
   aggregates.forEach(
-    ({ name, initialState = {}, cmdHandlers, evtHandlers }) => {
+    ({ name, initialState = {}, cmdHandlers = [], evtHandlers = []}) => {
       const _agg = Subway.createAggregate(name, initialState);
       initHandlers(_agg, cmdHandlers, evtHandlers);
     }

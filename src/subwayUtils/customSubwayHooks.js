@@ -3,7 +3,7 @@ import { Subway } from "./subwayRef";
 
 export const useObserveAggregateState = (
   aggregateName,
-  selector,
+  selector = d => d,
   once = false
 ) => {
   const [data, setData] = useState(null);
@@ -26,7 +26,7 @@ export const useObserveAggregateState = (
       } finally {
       }
     };
-  }, []);
+  }, [/*aggregateName, once, selector*/]);
 
   return [data];
 };
@@ -47,7 +47,7 @@ export const useSpyAggregateEvent = (aggregateName, eventID, selector) => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [aggregateName, eventID, selector]);
 
   return [data];
 };

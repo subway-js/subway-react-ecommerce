@@ -1,5 +1,7 @@
 import { Subway } from "../../subwayUtils/";
 import { Events } from "./verbs/events";
+import { Commands } from "./verbs/commands";
+import { PublicCommands } from "./verbs/public";
 
 import { cmdHandlers } from "./handlers/commands";
 import { evtHandlers } from "./handlers/events";
@@ -20,11 +22,12 @@ export const aggregateConfig = {
   bootstrap: () => {
     // TODO quick mapping command => event in nav login button
 
-    Subway.selectAggregate("*").triggerAfter("LOGIN_MODAL_REQUEST_SUBMITTED", {
+    Subway.respondToCommand(PublicCommands.SHOW_LOGIN_MODAL, {
       targetAggregate: AGGREGATE_NAME,
       triggeredEvent: Events.LOGIN_MODAL_REQUESTED
     });
-    Subway.selectAggregate("*").triggerAfter("LOGOUT_USER_REQUEST_SUBMITTED", {
+
+    Subway.respondToCommand(PublicCommands.PERFORM_USER_LOGOUT, {
       targetAggregate: AGGREGATE_NAME,
       triggeredEvent: Events.LOGOUT_USER_REQUESTED
     });
