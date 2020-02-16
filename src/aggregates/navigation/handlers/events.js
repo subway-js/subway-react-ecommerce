@@ -2,9 +2,10 @@ import { Events } from "../verbs/events";
 
 export const evtHomePageSelectedHandler = {
   command: Events.HOME_PAGE_SELECTED,
-  handler: aggregateState => ({
+  handler: ({ state }) => ({
     proposal: {
-      ...aggregateState,
+      ...state,
+      selectedProduct: null,
       currentPage: "home"
     }
   })
@@ -12,9 +13,10 @@ export const evtHomePageSelectedHandler = {
 
 export const evtProductPageSelectedHandler = {
   command: Events.PRODUCT_PAGE_SELECTED,
-  handler: aggregateState => ({
+  handler: ({ state }) => ({
     proposal: {
-      ...aggregateState,
+      ...state,
+      selectedProduct: state.product,
       currentPage: "product"
     }
   })
@@ -22,9 +24,10 @@ export const evtProductPageSelectedHandler = {
 
 export const evtCheckoutPageRequestSubmittedHandler = {
   command: Events.CHECKOUT_PAGE_REQUEST_SUBMITTED,
-  handler: aggregateState => ({
+  handler: ({ state }) => ({
     proposal: {
-      ...aggregateState,
+      ...state,
+      selectedProduct: null,
       currentPage: "checkout"
     }
   })

@@ -21,15 +21,32 @@ export const aggregateConfig = {
   cmdHandlers,
   evtHandlers,
   bootstrap: () => {
+    Subway.selectAggregate(AGGREGATE_NAME).exposeCommandHandler(
+      PublicCommands.NAVIGATE_TO_PRODUCT_DETAILS,
+      ({ payload }) => {
+        return {
+          events: [
+            {
+              id: Events.PRODUCT_PAGE_SELECTED,
+              payload
+            }
+          ]
+        };
+      }
+    );
 
-    Subway.respondToCommand(PublicCommands.NAVIGATE_TO_PRODUCT_DETAILS, {
-      targetAggregate: AGGREGATE_NAME,
-      triggeredEvent: Events.PRODUCT_PAGE_SELECTED
-    });
-
-    Subway.respondToCommand(PublicCommands.NAVIGATE_TO_CHECKOUT_PAGE, {
-      targetAggregate: AGGREGATE_NAME,
-      triggeredEvent: Events.CHECKOUT_PAGE_REQUEST_SUBMITTED
-    });
+    Subway.selectAggregate(AGGREGATE_NAME).exposeCommandHandler(
+      PublicCommands.NAVIGATE_TO_CHECKOUT_PAGE,
+      ({ payload }) => {
+        return {
+          events: [
+            {
+              id: Events.CHECKOUT_PAGE_REQUEST_SUBMITTED,
+              payload
+            }
+          ]
+        };
+      }
+    );
   }
 };

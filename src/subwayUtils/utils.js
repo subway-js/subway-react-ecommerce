@@ -3,11 +3,11 @@ import { Subway } from "./";
 export const initHandlers = (aggregate, cmdHandlers, evtHandlers) => {
   cmdHandlers &&
     cmdHandlers.forEach(({ command, handler, onError = null }) => {
-      aggregate.setCommandHandler(command, handler, onError);
+      aggregate.addCommandHandler(command, handler, onError);
     });
   evtHandlers &&
     evtHandlers.forEach(({ command, handler, onError = null }) => {
-      aggregate.setEventHandler(command, handler, onError);
+      aggregate.addEventHandler(command, handler, onError);
     });
 };
 

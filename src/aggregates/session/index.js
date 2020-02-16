@@ -20,17 +20,31 @@ export const aggregateConfig = {
   cmdHandlers,
   evtHandlers,
   bootstrap: () => {
-    // TODO quick mapping command => event in nav login button
+    Subway.selectAggregate(AGGREGATE_NAME).exposeCommandHandler(
+      PublicCommands.SHOW_LOGIN_MODAL,
+      ({ payload }) => {
+        return {
+          events: [
+            {
+              id: Events.LOGIN_MODAL_REQUESTED
+            }
+          ]
+        };
+      }
+    );
 
-    Subway.respondToCommand(PublicCommands.SHOW_LOGIN_MODAL, {
-      targetAggregate: AGGREGATE_NAME,
-      triggeredEvent: Events.LOGIN_MODAL_REQUESTED
-    });
-
-    Subway.respondToCommand(PublicCommands.PERFORM_USER_LOGOUT, {
-      targetAggregate: AGGREGATE_NAME,
-      triggeredEvent: Events.LOGOUT_USER_REQUESTED
-    });
+    Subway.selectAggregate(AGGREGATE_NAME).exposeCommandHandler(
+      PublicCommands.PERFORM_USER_LOGOUT,
+      ({ payload }) => {
+        return {
+          events: [
+            {
+              id: Events.LOGOUT_USER_REQUESTED
+            }
+          ]
+        };
+      }
+    );
   }
 };
 

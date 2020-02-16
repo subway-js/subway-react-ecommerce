@@ -4,36 +4,24 @@ import { Subway } from "./subwayRef";
 export const useObserveAggregateState = (
   aggregateName,
   selector = d => d,
-  once = false
 ) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
     console.log(">>>> useObserveAggregateState init");
     const productsAggregate = Subway.selectAggregate(aggregateName);
-    const { currentState, unsubscribe } = productsAggregate.observeState({
-      next: ({ nextState }) => {
-        setData(selector(nextState));
-        if (once) unsubscribe();
-      }
+    const stopObserving = productsAggregate.observeState(nextState => {
+      setData(selector(nextState));
     });
-    setData(selector(currentState));
-
     return () => {
-      try {
-        unsubscribe();
-      } catch (e) {
-      } finally {
-      }
+      stopObserving()
     };
   }, [/*aggregateName, once, selector*/]);
 
   return [data];
 };
 
-export const useObserveAggregateStateOnce = (aggregateName, selector) =>
-  useObserveAggregateState(aggregateName, selector, true);
-
+/*
 export const useSpyAggregateEvent = (aggregateName, eventID, selector) => {
   const [data, setData] = useState(null);
 
@@ -51,3 +39,4 @@ export const useSpyAggregateEvent = (aggregateName, eventID, selector) => {
 
   return [data];
 };
+*/

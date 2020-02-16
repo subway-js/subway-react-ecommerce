@@ -5,7 +5,7 @@ import * as MockAPI from "../api/mockApi";
 
 export const cmdLoadProductsListHandler = {
   command: Commands.LOAD_PRODUCTS_LIST,
-  handler: async (aggregateState, payload) => {
+  handler: async ({ state, payload }) => {
     const productsList = await MockAPI.getProductsList();
     return {
       events: [{ id: Events.PRODUCTS_LIST_LOADED, payload: { productsList } }]
@@ -14,14 +14,18 @@ export const cmdLoadProductsListHandler = {
 };
 
 export const cmdSelectProductForDetailsHandler = {
-  command: "NAVIGATE_TO_PRODUCT_DETAILS",
-  handler: (aggregateState, { product }) => ({
-    // TODO load product details???
-    events: [{ id: Events.PRODUCT_SELECTED_FOR_DETAILS, payload: { product } }]
+  command: "SELECT_PRODUCT",
+  handler: ({ state, payload }) => ({
+    events: [
+      {
+        id: Events.PRODUCT_SELECTED_FOR_DETAILS,
+        payload: { product: payload.product }
+      }
+    ]
   })
 };
 
 export const cmdHandlers = [
   cmdLoadProductsListHandler,
-  cmdSelectProductForDetailsHandler,
+  cmdSelectProductForDetailsHandler
 ];

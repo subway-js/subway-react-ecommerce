@@ -2,11 +2,12 @@ import { Events } from "../verbs/events";
 
 export const evtProductAddedToCartHandler = {
   command: Events.PRODUCT_ADDED_TO_CART,
-  handler: (aggregateState, { product }) => {
+  handler: ({ state, payload }) => {
+    const { product } = payload;
     // TODO change to add products count and total
-    // const items = aggregateState.items.concat(product);
+    // const items = state.items.concat(product);
 
-    const { items } = aggregateState;
+    const { items } = state;
     if (items.has(product.id)) {
       const prod = items.get(product.id);
       items.set(product.id, { ...product, count: prod.count + 1 });
@@ -15,7 +16,7 @@ export const evtProductAddedToCartHandler = {
     }
     return {
       proposal: {
-        ...aggregateState,
+        ...state,
         items
       }
     };
@@ -24,7 +25,8 @@ export const evtProductAddedToCartHandler = {
 
 export const evtOrderProcessedHandler = {
   command: Events.ORDER_PROCESSED,
-  handler: (aggregateState, { successful }) => {
+  handler: ({ state, payload }) => {
+    const { successful } = payload;
     // TODO check successful = fakse
     return {
       proposal: {

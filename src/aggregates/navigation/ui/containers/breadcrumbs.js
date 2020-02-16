@@ -10,14 +10,24 @@ import { selectHomePage } from "../../commandCreators";
 import { AGGREGATE_NAME as NAVIGATION_AGGREGATE_NAME } from "../../";
 
 export function Breadcrumbs() {
-  const [selectedProduct] = useSpyAggregateEvent(
-    "ProductsAggregate",
-    "NAVIGATE_TO_PRODUCT_DETAILS",
-    ({ product }) => ({ id: product.id, title: product.title })
-  );
+  // const selectedProductName = null;
+  // const [selectedProductName] = useSpyAggregateEvent(
+  //   "ProductsAggregate",
+  //   "NAVIGATE_TO_PRODUCT_DETAILS",
+  //   ({ product }) => ({ id: product.id, title: product.title })
+  // );
+
   const [currentPage] = useObserveAggregateState(
     NAVIGATION_AGGREGATE_NAME,
     aggregateState => aggregateState.currentPage
+  );
+
+  const [selectedProductName] = useObserveAggregateState(
+    NAVIGATION_AGGREGATE_NAME,
+    aggregateState =>
+      aggregateState && aggregateState.selectedProduct
+        ? aggregateState.selectedProduct.title
+        : null
   );
 
   return (
@@ -27,24 +37,17 @@ export function Breadcrumbs() {
           {currentPage === "home" && (
             <Breadcrumb.Section active>Products</Breadcrumb.Section>
           )}
-          {currentPage === "product" &&
-            selectedProduct &&
-            selectedProduct.id &&
-            selectedProduct.title && (
-              <>
-                <Breadcrumb.Section
-                  active
-                  link
-                  onClick={() => selectHomePage()}
-                >
-                  Products
-                </Breadcrumb.Section>
-                <Breadcrumb.Divider />
-                <Breadcrumb.Section active>
-                  {selectedProduct.title}
-                </Breadcrumb.Section>
-              </>
-            )}
+          {currentPage === "product" && selectedProductName && (
+            <>
+              <Breadcrumb.Section active link onClick={() => selectHomePage()}>
+                Products
+              </Breadcrumb.Section>
+              <Breadcrumb.Divider />
+              <Breadcrumb.Section active>
+                {selectedProductName}
+              </Breadcrumb.Section>
+            </>
+          )}
           {currentPage === "checkout" && (
             <>
               <Breadcrumb.Section active link onClick={() => selectHomePage()}>

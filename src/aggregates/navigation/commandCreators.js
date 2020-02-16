@@ -7,13 +7,11 @@ export const selectHomePage = () => {
 };
 
 export const showLoginScreen = () => {
-  Subway.selectAggregate(AGGREGATE_NAME).sendCommand(
-    'SHOW_LOGIN_MODAL'
-  );
+  Subway.selectAggregate(AGGREGATE_NAME).broadcastCommand("SHOW_LOGIN_MODAL");
 };
 
 export const logout = () => {
-  Subway.selectAggregate(AGGREGATE_NAME).sendCommand(
-    'PERFORM_USER_LOGOUT'
+  Subway.selectAggregate(AGGREGATE_NAME).broadcastCommand(
+    "PERFORM_USER_LOGOUT"
   );
 };

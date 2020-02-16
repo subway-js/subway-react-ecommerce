@@ -10,7 +10,7 @@ import {
   Dimmer
 } from "semantic-ui-react";
 
-import { useObserveAggregateStateOnce } from "../../../../subwayUtils/";
+import { useObserveAggregateState } from "../../../../subwayUtils/";
 
 import { AGGREGATE_NAME as PRODUCTS_AGGREGATE_NAME } from "../../";
 
@@ -24,7 +24,7 @@ import { AddToCartButton } from "../components/addToCartButton";
 export function ProductList() {
   const [detailsButtonHoveredId, setDetailsButtonHoveredId] = useState(null);
 
-  const [productList] = useObserveAggregateStateOnce(
+  const [productList] = useObserveAggregateState(
     PRODUCTS_AGGREGATE_NAME,
     aggregateState => aggregateState.productsList
   );

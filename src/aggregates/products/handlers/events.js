@@ -2,10 +2,11 @@ import { Events } from "../verbs/events";
 
 export const evtProductsListLoadedHandler = {
   command: Events.PRODUCTS_LIST_LOADED,
-  handler: (aggregateState, { productsList }) => {
+  handler: ({ state, payload = {} }) => {
+    const { productsList } = payload;
     return {
       proposal: {
-        ...aggregateState,
+        ...state,
         productsList
       }
     };
@@ -15,10 +16,11 @@ export const evtProductsListLoadedHandler = {
 // TODO review communication messaging logic
 export const evtProductSelectedForDetailsHandler = {
   command: Events.PRODUCT_SELECTED_FOR_DETAILS,
-  handler: (aggregateState, { product }) => {
+  handler: ({ state, payload = {} }) => {
+    const { product } = payload;
     return {
       proposal: {
-        ...aggregateState,
+        ...state,
         selectedProduct: product
       }
     };

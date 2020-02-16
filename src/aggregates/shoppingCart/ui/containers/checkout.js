@@ -17,11 +17,12 @@ import {
 import { showLoginScreen, submitSuccessfulOrder } from "../../commandCreators";
 
 export function Checkout() {
-  const [orderSuccessful = false] = useSpyAggregateEvent(
-    SHOPPING_CART_AGGREGATE_NAME,
-    "ORDER_PROCESSED",
-    ({ successful }) => successful
-  );
+  const orderSuccessful = false;
+  // const [orderSuccessful = false] = useSpyAggregateEvent(
+  //   SHOPPING_CART_AGGREGATE_NAME,
+  //   "ORDER_PROCESSED",
+  //   ({ successful }) => successful
+  // );
 
   const [loading, setLoading] = useState(false);
   const [checkoutCompleted, setCheckoutCompleted] = useState(false);
@@ -36,9 +37,7 @@ export function Checkout() {
     aggregateState => aggregateState.items || []
   );
 
-  const [sessionData] = useObserveAggregateState(
-    "SessionAggregate",
-  );
+  const [sessionData] = useObserveAggregateState("SessionAggregate");
 
   const { userLogged, username } = sessionData || {};
 
