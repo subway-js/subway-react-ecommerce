@@ -16,7 +16,7 @@ export { Checkout } from "./ui/containers/checkout";
 
 export const aggregateConfig = {
   name: AGGREGATE_NAME,
-  initialState: { items: new Map() },
+  initialState: { checkoutSuccessful: null, items: new Map() },
   cmdHandlers,
   evtHandlers,
   bootstrap: () => {

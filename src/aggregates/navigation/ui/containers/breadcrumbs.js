@@ -10,25 +10,10 @@ import { selectHomePage } from "../../commandCreators";
 import { AGGREGATE_NAME as NAVIGATION_AGGREGATE_NAME } from "../../";
 
 export function Breadcrumbs() {
-  // const selectedProductName = null;
-  // const [selectedProductName] = useSpyAggregateEvent(
-  //   "ProductsAggregate",
-  //   "NAVIGATE_TO_PRODUCT_DETAILS",
-  //   ({ product }) => ({ id: product.id, title: product.title })
-  // );
 
-  const [currentPage] = useObserveAggregateState(
-    NAVIGATION_AGGREGATE_NAME,
-    aggregateState => aggregateState.currentPage
-  );
-
-  const [selectedProductName] = useObserveAggregateState(
-    NAVIGATION_AGGREGATE_NAME,
-    aggregateState =>
-      aggregateState && aggregateState.selectedProduct
-        ? aggregateState.selectedProduct.title
-        : null
-  );
+  const [navigationState] = useObserveAggregateState(NAVIGATION_AGGREGATE_NAME);
+  const { currentPage, selectedProduct} = navigationState || {};
+  const selectedProductName = selectedProduct ? selectedProduct.title : null
 
   return (
     <Grid relaxed columns={2}>

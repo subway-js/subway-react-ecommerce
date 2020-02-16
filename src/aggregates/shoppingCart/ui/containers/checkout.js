@@ -17,29 +17,25 @@ import {
 import { showLoginScreen, submitSuccessfulOrder } from "../../commandCreators";
 
 export function Checkout() {
-  const orderSuccessful = false;
-  // const [orderSuccessful = false] = useSpyAggregateEvent(
-  //   SHOPPING_CART_AGGREGATE_NAME,
-  //   "ORDER_PROCESSED",
-  //   ({ successful }) => successful
-  // );
-
   const [loading, setLoading] = useState(false);
   const [checkoutCompleted, setCheckoutCompleted] = useState(false);
+  const [state] = useObserveAggregateState(SHOPPING_CART_AGGREGATE_NAME);
+  const {
+    items: shoppingMap = [],
+    checkoutSuccessful: orderSuccessful = false
+  } = state ? state : {};
+
+
+  console.log('-------')
+  console.log('[TODO - use consumeEvent rather than observeState, send last sent event]')
+  console.log('-------')
+  const [sessionData] = useObserveAggregateState("SessionAggregate");
+  const { userLogged, username } = sessionData || {};
 
   useEffect(() => {
     setCheckoutCompleted(orderSuccessful);
     setLoading(false);
-  }, [checkoutCompleted, orderSuccessful]);
-
-  const [shoppingMap] = useObserveAggregateState(
-    SHOPPING_CART_AGGREGATE_NAME,
-    aggregateState => aggregateState.items || []
-  );
-
-  const [sessionData] = useObserveAggregateState("SessionAggregate");
-
-  const { userLogged, username } = sessionData || {};
+  }, [orderSuccessful]);
 
   const list = Array.from(shoppingMap || []).map(item => ({ ...item[1] }));
   const totalCurrency = list[0] ? list[0].ccy : null;

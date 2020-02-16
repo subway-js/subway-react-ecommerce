@@ -13,13 +13,14 @@ export const evtHomePageSelectedHandler = {
 
 export const evtProductPageSelectedHandler = {
   command: Events.PRODUCT_PAGE_SELECTED,
-  handler: ({ state }) => ({
+  handler: ({ state, payload }) => {
+    return {
     proposal: {
       ...state,
-      selectedProduct: state.product,
+      selectedProduct: payload.product,
       currentPage: "product"
-    }
-  })
+    }}
+  }
 };
 
 export const evtCheckoutPageRequestSubmittedHandler = {

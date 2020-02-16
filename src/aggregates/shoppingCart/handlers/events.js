@@ -17,7 +17,8 @@ export const evtProductAddedToCartHandler = {
     return {
       proposal: {
         ...state,
-        items
+        items,
+        checkoutSuccessful: false
       }
     };
   }
@@ -30,6 +31,7 @@ export const evtOrderProcessedHandler = {
     // TODO check successful = fakse
     return {
       proposal: {
+        checkoutSuccessful: successful,
         items: new Map()
       }
     };

@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 import { Subway } from "./subwayRef";
 
-export const useObserveAggregateState = (
-  aggregateName,
-  selector = d => d,
-) => {
+export const useObserveAggregateState = (aggregateName, selector = d => d) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -14,9 +11,9 @@ export const useObserveAggregateState = (
       setData(selector(nextState));
     });
     return () => {
-      stopObserving()
+      stopObserving();
     };
-  }, [/*aggregateName, once, selector*/]);
+  }, []);
 
   return [data];
 };
