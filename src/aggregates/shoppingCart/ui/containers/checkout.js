@@ -12,7 +12,7 @@ import {
 import { AGGREGATE_NAME as SHOPPING_CART_AGGREGATE_NAME } from "../../";
 import {
   useObserveAggregateState,
-  useSpyAggregateEvent
+  useConsumeEvent
 } from "../../../../subwayUtils/";
 import { showLoginScreen, submitSuccessfulOrder } from "../../commandCreators";
 
@@ -25,12 +25,8 @@ export function Checkout() {
     checkoutSuccessful: orderSuccessful = false
   } = state ? state : {};
 
-
-  console.log('-------')
-  console.log('[TODO - use consumeEvent rather than observeState, send last sent event]')
-  console.log('-------')
-  const [sessionData] = useObserveAggregateState("SessionAggregate");
-  const { userLogged, username } = sessionData || {};
+  const [userLoggedInPayload] = useConsumeEvent(SHOPPING_CART_AGGREGATE_NAME, "SESSION_STATUS_UPDATED");
+  const { userLogged, username } = userLoggedInPayload || {};
 
   useEffect(() => {
     setCheckoutCompleted(orderSuccessful);

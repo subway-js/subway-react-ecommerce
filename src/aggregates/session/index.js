@@ -45,6 +45,13 @@ export const aggregateConfig = {
         };
       }
     );
+
+    Subway.selectAggregate(AGGREGATE_NAME).exposeEvent({
+      type: Events.SESSION_STATUS_UPDATED,
+      defaultValue: {
+        userLogged: false
+      }
+    });
   }
 };
 

@@ -5,7 +5,7 @@ export const evtHomePageSelectedHandler = {
   handler: ({ state }) => ({
     proposal: {
       ...state,
-      selectedProduct: null,
+      selectedProductName: null,
       currentPage: "home"
     }
   })
@@ -17,7 +17,7 @@ export const evtProductPageSelectedHandler = {
     return {
     proposal: {
       ...state,
-      selectedProduct: payload.product,
+      selectedProductName: payload.product.title,
       currentPage: "product"
     }}
   }
@@ -28,7 +28,7 @@ export const evtCheckoutPageRequestSubmittedHandler = {
   handler: ({ state }) => ({
     proposal: {
       ...state,
-      selectedProduct: null,
+      selectedProductName: null,
       currentPage: "checkout"
     }
   })

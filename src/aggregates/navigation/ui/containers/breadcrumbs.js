@@ -12,8 +12,7 @@ import { AGGREGATE_NAME as NAVIGATION_AGGREGATE_NAME } from "../../";
 export function Breadcrumbs() {
 
   const [navigationState] = useObserveAggregateState(NAVIGATION_AGGREGATE_NAME);
-  const { currentPage, selectedProduct} = navigationState || {};
-  const selectedProductName = selectedProduct ? selectedProduct.title : null
+  const { currentPage, selectedProductName} = navigationState || {};
 
   return (
     <Grid relaxed columns={2}>

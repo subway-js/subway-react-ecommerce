@@ -33,7 +33,13 @@ export const evtLogoutUserRequestedHandler = {
         jwt: null,
         username: null
       },
-      events: [{ id: Events.USER_LOGGED_OUT }]
+      // events: [{ id: Events.USER_LOGGED_OUT }]
+      events: [{
+        id: Events.SESSION_STATUS_UPDATED,
+        payload: {
+          userLoggedIn: false,
+        }
+      }],
     };
   }
 };
@@ -42,7 +48,18 @@ export const evtUserSuccessfullyAuthenticatedHandler = {
   command: Events.USER_SUCCESSFULLY_AUTHENTICATED,
   handler: ({ state, payload }) => {
     const { jwt, username } = payload;
+
+    // TODO: do we need Subway...exposeEvents() at all?
+    // - inject broadcastEvent() ?
+    // - add return field exposeEvents ?
     return {
+      events: [{
+        id: Events.SESSION_STATUS_UPDATED,
+        payload: {
+          userLogged: true,
+          username
+        }
+      }],
       proposal: {
         ...state,
         userLogged: true,

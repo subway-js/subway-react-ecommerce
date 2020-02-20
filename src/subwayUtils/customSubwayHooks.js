@@ -18,6 +18,22 @@ export const useObserveAggregateState = (aggregateName, selector = d => d) => {
   return [data];
 };
 
+
+export const useConsumeEvent = (consumerAggregateName, eventName) => {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    console.log(">>>> useConsumeEvent init");
+    const consumer = Subway.selectAggregate(consumerAggregateName);
+    const unsubscribe = consumer.consumeEvent(eventName, (type, payload) => {
+      setData(payload);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+  return [data];
+};
+
 /*
 export const useSpyAggregateEvent = (aggregateName, eventID, selector) => {
   const [data, setData] = useState(null);
