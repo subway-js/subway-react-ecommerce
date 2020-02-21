@@ -13,6 +13,7 @@ import { useObserveAggregateState } from "../../../../subwayUtils";
 import { showLoginScreen, logout } from "../../commandCreators";
 
 export function Navbar({ shoppingCartMenuItem }) {
+
   const [sessionData] = useObserveAggregateState(
     "SessionAggregate",
     aggregateState => ({
