@@ -9,21 +9,18 @@ import {
   Icon,
   Divider
 } from "semantic-ui-react";
-import { useObserveAggregateState } from "../../../../subwayUtils";
+import { useObserveAggregateState, useConsumeEvent } from "../../../../subwayUtils";
 import { showLoginScreen, logout } from "../../commandCreators";
+
+import { AGGREGATE_NAME as NAVIGATION_AGGREGATE_NAME } from "../../";
 
 export function Navbar({ shoppingCartMenuItem }) {
 
-  const [sessionData] = useObserveAggregateState(
-    "SessionAggregate",
-    aggregateState => ({
-      isUserLogged: aggregateState.userLogged,
-      username: aggregateState.username
-    })
-  );
+  const [userLoggedInPayload] = useConsumeEvent(NAVIGATION_AGGREGATE_NAME, "SESSION_STATUS_UPDATED");
+  const { userLogged, username } = userLoggedInPayload || {};
 
   const [currentPage] = useObserveAggregateState(
-    "NavigationAggregate",
+    NAVIGATION_AGGREGATE_NAME,
     aggregateState => aggregateState.currentPage
   );
 
@@ -37,7 +34,7 @@ export function Navbar({ shoppingCartMenuItem }) {
         {currentPage !== "checkout" && (
           <Menu.Item position="right">
             {shoppingCartMenuItem}
-            {sessionData && !sessionData.isUserLogged && (
+            {!userLogged && (
               <Button
                 onClick={() => showLoginScreen()}
                 style={{ marginLeft: 10 }}
@@ -48,7 +45,7 @@ export function Navbar({ shoppingCartMenuItem }) {
                 Log-in
               </Button>
             )}
-            {sessionData && sessionData.isUserLogged && (
+            {userLogged && (
               <Popup
                 on="click"
                 position="bottom right"
@@ -59,7 +56,7 @@ export function Navbar({ shoppingCartMenuItem }) {
                 }
               >
                 <Popup.Content style={{ padding: "0 !important" }}>
-                  <List.Header>{`Hi, ${sessionData.username}`} </List.Header>
+                  <List.Header>{`Hi, ${username}`} </List.Header>
                   <Divider />
                   <List selection verticalAlign="middle">
                     <List.Item onClick={() => logout()}>Logout</List.Item>

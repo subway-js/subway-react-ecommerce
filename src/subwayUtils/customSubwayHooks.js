@@ -30,7 +30,7 @@ export const useConsumeEvent = (consumerAggregateName, eventName) => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  });
   return [data];
 };
 
