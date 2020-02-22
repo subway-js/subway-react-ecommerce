@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/subway-react-ecommerce/static/js/main.7b90a958.chunk.js",
-    "main.js.map": "/subway-react-ecommerce/static/js/main.7b90a958.chunk.js.map",
+    "main.js": "/subway-react-ecommerce/static/js/main.6dcc1241.chunk.js",
+    "main.js.map": "/subway-react-ecommerce/static/js/main.6dcc1241.chunk.js.map",
     "runtime-main.js": "/subway-react-ecommerce/static/js/runtime-main.a1eb446f.js",
     "runtime-main.js.map": "/subway-react-ecommerce/static/js/runtime-main.a1eb446f.js.map",
-    "static/js/2.1ebaf160.chunk.js": "/subway-react-ecommerce/static/js/2.1ebaf160.chunk.js",
-    "static/js/2.1ebaf160.chunk.js.map": "/subway-react-ecommerce/static/js/2.1ebaf160.chunk.js.map",
+    "static/js/2.fd6717cb.chunk.js": "/subway-react-ecommerce/static/js/2.fd6717cb.chunk.js",
+    "static/js/2.fd6717cb.chunk.js.map": "/subway-react-ecommerce/static/js/2.fd6717cb.chunk.js.map",
     "index.html": "/subway-react-ecommerce/index.html",
-    "precache-manifest.52fd7da3b53ed1a7a12ec5b7a53a8497.js": "/subway-react-ecommerce/precache-manifest.52fd7da3b53ed1a7a12ec5b7a53a8497.js",
+    "precache-manifest.a46d5727fdcf08dcab5cc446bbd0c119.js": "/subway-react-ecommerce/precache-manifest.a46d5727fdcf08dcab5cc446bbd0c119.js",
     "service-worker.js": "/subway-react-ecommerce/service-worker.js",
-    "static/js/2.1ebaf160.chunk.js.LICENSE": "/subway-react-ecommerce/static/js/2.1ebaf160.chunk.js.LICENSE"
+    "static/js/2.fd6717cb.chunk.js.LICENSE": "/subway-react-ecommerce/static/js/2.fd6717cb.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.a1eb446f.js",
-    "static/js/2.1ebaf160.chunk.js",
-    "static/js/main.7b90a958.chunk.js"
+    "static/js/2.fd6717cb.chunk.js",
+    "static/js/main.6dcc1241.chunk.js"
   ]
 }
