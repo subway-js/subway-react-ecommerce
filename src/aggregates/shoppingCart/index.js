@@ -30,15 +30,13 @@ export const aggregateConfig = {
 
     Subway.selectAggregate(AGGREGATE_NAME).publicChannel().reactToCommand(
       PublicCommands.ADD_TO_SHOPPING_CART,
-      ({ payload }) => {
-        return {
-          events: [
+      ({ payload }, { triggerEvents }) => {
+        triggerEvents([
             {
               id: Events.PRODUCT_ADDED_TO_CART,
               payload
             }
-          ]
-        };
+          ])
       }
     );
   }

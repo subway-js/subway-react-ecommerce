@@ -22,36 +22,25 @@ export const aggregateConfig = {
   bootstrap: () => {
     Subway.selectAggregate(AGGREGATE_NAME).publicChannel().reactToCommand(
       PublicCommands.SHOW_LOGIN_MODAL,
-      ({ payload }) => {
-        return {
-          events: [
+      ({ payload }, { triggerEvents }) => {
+        triggerEvents([
             {
               id: Events.LOGIN_MODAL_REQUESTED
             }
-          ]
-        };
+          ])
       }
     );
 
     Subway.selectAggregate(AGGREGATE_NAME).publicChannel().reactToCommand(
       PublicCommands.PERFORM_USER_LOGOUT,
-      ({ payload }) => {
-        return {
-          events: [
+      ({ payload }, { triggerEvents }) => {
+        triggerEvents([
             {
               id: Events.LOGOUT_USER_REQUESTED
             }
-          ]
-        };
+          ])
       }
     );
-
-    // Subway.selectAggregate(AGGREGATE_NAME).exposeEvent({
-    //   type: Events.SESSION_STATUS_UPDATED,
-    //   defaultValue: {
-    //     userLogged: false
-    //   }
-    // });
   }
 };
 

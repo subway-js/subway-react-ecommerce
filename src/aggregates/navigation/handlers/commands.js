@@ -3,9 +3,8 @@ import { Events } from "../verbs/events";
 
 export const cmdSelectHomePageHandler = {
   command: Commands.SELECT_HOME_PAGE,
-  handler: () => ({
-    events: [{ id: Events.HOME_PAGE_SELECTED }]
-  })
+  handler: ({}, { triggerEvents }) =>
+    triggerEvents([{ id: Events.HOME_PAGE_SELECTED }])
 };
 
 

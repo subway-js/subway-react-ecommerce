@@ -2,7 +2,7 @@ import { Events } from "../verbs/events";
 
 export const evtProductAddedToCartHandler = {
   command: Events.PRODUCT_ADDED_TO_CART,
-  handler: ({ state, payload }) => {
+  handler: ({ state, payload }, { updateState }) => {
     const { product } = payload;
     // TODO change to add products count and total
     // const items = state.items.concat(product);
@@ -14,27 +14,23 @@ export const evtProductAddedToCartHandler = {
     } else {
       items.set(product.id, { ...product, count: 1 });
     }
-    return {
-      proposal: {
+    updateState({
         ...state,
         items,
         checkoutSuccessful: false
-      }
-    };
+      })
   }
 };
 
 export const evtOrderProcessedHandler = {
   command: Events.ORDER_PROCESSED,
-  handler: ({ state, payload }) => {
+  handler: ({ state, payload }, { updateState }) => {
     const { successful } = payload;
     // TODO check successful = fakse
-    return {
-      proposal: {
+    updateState({
         checkoutSuccessful: successful,
         items: new Map()
-      }
-    };
+      })
   }
 };
 

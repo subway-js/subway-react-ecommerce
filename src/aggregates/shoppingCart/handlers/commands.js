@@ -4,7 +4,7 @@ import * as MockAPI from "../api/mockApi";
 
 export const cmdSubmitOrderHandler = {
   command: Commands.SUBMIT_ORDER,
-  handler: async ({ state, payload }) => {
+  handler: async ({ state, payload }, { triggerEvents }) => {
     const { items } = payload;
     const orderSubmissionResult = await MockAPI.submitSuccessfulOrder(items);
     let events = [];
@@ -18,9 +18,7 @@ export const cmdSubmitOrderHandler = {
       ]);
     }
 
-    return {
-      events
-    };
+    triggerEvents(events);
   }
 };
 

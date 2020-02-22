@@ -21,32 +21,32 @@ export const aggregateConfig = {
   cmdHandlers,
   evtHandlers,
   bootstrap: () => {
-    Subway.selectAggregate(AGGREGATE_NAME).publicChannel().reactToCommand(
-      PublicCommands.NAVIGATE_TO_PRODUCT_DETAILS,
-      ({ payload }) => {
-        return {
-          events: [
+    Subway.selectAggregate(AGGREGATE_NAME)
+      .publicChannel()
+      .reactToCommand(
+        PublicCommands.NAVIGATE_TO_PRODUCT_DETAILS,
+        ({ payload }, { triggerEvents }) => {
+          triggerEvents([
             {
               id: Events.PRODUCT_PAGE_SELECTED,
               payload
             }
-          ]
-        };
-      }
-    );
+          ]);
+        }
+      );
 
-    Subway.selectAggregate(AGGREGATE_NAME).publicChannel().reactToCommand(
-      PublicCommands.NAVIGATE_TO_CHECKOUT_PAGE,
-      ({ payload }) => {
-        return {
-          events: [
+    Subway.selectAggregate(AGGREGATE_NAME)
+      .publicChannel()
+      .reactToCommand(
+        PublicCommands.NAVIGATE_TO_CHECKOUT_PAGE,
+        ({ payload }, { triggerEvents }) => {
+          triggerEvents([
             {
               id: Events.CHECKOUT_PAGE_REQUEST_SUBMITTED,
               payload
             }
-          ]
-        };
-      }
-    );
+          ]);
+        }
+      );
   }
 };

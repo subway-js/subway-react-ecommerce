@@ -4,14 +4,13 @@ import * as MockAPI from "../api/mockApi";
 
 export const cmdHideLoginScreenHandler = {
   command: Commands.UPDATE_LOGIN_MODAL_VISIBILITY,
-  handler: ({ state, payload }) => ({
-    events: [{ id: Events.LOGIN_MODAL_VISIBILITY_UPDATED, payload }]
-  })
+  handler: ({ state, payload }, { triggerEvents }) =>
+    triggerEvents([{ id: Events.LOGIN_MODAL_VISIBILITY_UPDATED, payload }])
 };
 
 export const cmdAuthenticateUserHandler = {
   command: Commands.AUTHENTICATE_USER,
-  handler: async ({ state, payload }) => {
+  handler: async ({ state, payload }, { triggerEvents }) => {
     const { username, password } = payload;
     const authenticationResult = await MockAPI.authenticate(username, password);
     let events = [];
@@ -26,9 +25,7 @@ export const cmdAuthenticateUserHandler = {
       ]);
     }
 
-    return {
-      events
-    };
+    triggerEvents(events)
   }
 };
 
