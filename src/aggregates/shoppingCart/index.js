@@ -24,11 +24,11 @@ export const aggregateConfig = {
   cmdHandlers,
   evtHandlers,
   bootstrap: () => {
-    Subway.selectAggregate(AGGREGATE_NAME).$experimental.exportComponent("HeaderShoppingCartDropdown", () => (
+    Subway.selectAggregate(AGGREGATE_NAME).publicChannel().publishComponent("HeaderShoppingCartDropdown", () => (
       <HeaderShoppingCartDropdown />
     ));
 
-    Subway.selectAggregate(AGGREGATE_NAME).exposeCommandHandler(
+    Subway.selectAggregate(AGGREGATE_NAME).publicChannel().reactToCommand(
       PublicCommands.ADD_TO_SHOPPING_CART,
       ({ payload }) => {
         return {

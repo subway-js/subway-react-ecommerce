@@ -16,7 +16,7 @@ function App() {
 
   const importedComponent = Subway.selectAggregate(
     "ShoppingCartAggregate"
-  ).$experimental.importComponent("HeaderShoppingCartDropdown");
+  ).publicChannel().getComponent("HeaderShoppingCartDropdown");
   const HeaderShoppingCartDropdown = importedComponent.factoryFunction();
 
   return (

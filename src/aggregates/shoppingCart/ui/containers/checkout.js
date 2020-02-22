@@ -12,7 +12,7 @@ import {
 import { AGGREGATE_NAME as SHOPPING_CART_AGGREGATE_NAME } from "../../";
 import {
   useObserveAggregateState,
-  useConsumeEvent
+  useReactToEvent
 } from "../../../../subwayUtils/";
 import { showLoginScreen, submitSuccessfulOrder } from "../../commandCreators";
 
@@ -25,7 +25,7 @@ export function Checkout() {
     checkoutSuccessful: orderSuccessful = false
   } = state ? state : {};
 
-  const [userLoggedInPayload] = useConsumeEvent(SHOPPING_CART_AGGREGATE_NAME, "SESSION_STATUS_UPDATED");
+  const [userLoggedInPayload] = useReactToEvent(SHOPPING_CART_AGGREGATE_NAME, "SESSION_STATUS_UPDATED");
   const { userLogged, username } = userLoggedInPayload || {};
 
   useEffect(() => {

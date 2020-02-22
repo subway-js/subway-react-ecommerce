@@ -19,13 +19,13 @@ export const useObserveAggregateState = (aggregateName, selector = d => d) => {
 };
 
 
-export const useConsumeEvent = (consumerAggregateName, eventName) => {
+export const useReactToEvent = (consumerAggregateName, eventName, fn = null) => {
   const [data, setData] = useState(null);
   useEffect(() => {
-    console.log(">>>> useConsumeEvent init");
+    console.log(">>>> useReactToEvent init !!! TODO: what if return null? and triggered action?");
     const consumer = Subway.selectAggregate(consumerAggregateName);
-    const unsubscribe = consumer.consumeEvent(eventName, (type, payload) => {
-      setData(payload);
+    const unsubscribe = consumer.publicChannel().reactToEvent(eventName, (type, payload) => {
+      setData(fn ? fn(payload): payload);
     });
     return () => {
       unsubscribe();

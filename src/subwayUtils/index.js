@@ -2,7 +2,7 @@ export { Subway } from "./subwayRef";
 export { initAggregates } from "./utils";
 export {
   useObserveAggregateState,
-  useConsumeEvent
+  useReactToEvent
   // useObserveAggregateStateOnce,
   // useSpyAggregateEvent
 } from "./customSubwayHooks";

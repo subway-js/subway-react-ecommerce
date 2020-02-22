@@ -9,14 +9,20 @@ import {
   Icon,
   Divider
 } from "semantic-ui-react";
-import { useObserveAggregateState, useConsumeEvent } from "../../../../subwayUtils";
+import { useObserveAggregateState, useReactToEvent } from "../../../../subwayUtils";
 import { showLoginScreen, logout } from "../../commandCreators";
 
 import { AGGREGATE_NAME as NAVIGATION_AGGREGATE_NAME } from "../../";
 
 export function Navbar({ shoppingCartMenuItem }) {
 
-  const [userLoggedInPayload] = useConsumeEvent(NAVIGATION_AGGREGATE_NAME, "SESSION_STATUS_UPDATED");
+  const [userLoggedInPayload] =
+    useReactToEvent(
+      NAVIGATION_AGGREGATE_NAME,
+      "SESSION_STATUS_UPDATED",
+      payload => payload
+      );
+
   const { userLogged, username } = userLoggedInPayload || {};
 
   const [currentPage] = useObserveAggregateState(

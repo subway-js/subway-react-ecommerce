@@ -25,7 +25,12 @@ export const evtLoginModalRequestedHandler = {
 
 export const evtLogoutUserRequestedHandler = {
   command: Events.LOGOUT_USER_REQUESTED,
-  handler: ({ state, payload }) => {
+  handler: ({ state, payload, broadcastEvent }) => {
+
+    broadcastEvent(Events.SESSION_STATUS_UPDATED, {
+      userLogged: false,
+    });
+
     return {
       proposal: {
         ...state,
@@ -44,14 +49,25 @@ export const evtLogoutUserRequestedHandler = {
   }
 };
 
+/*
+Subway.selectAggregate(AGGREGATE_NAME).exposeEvent({
+  type: Events.SESSION_STATUS_UPDATED,
+  defaultValue: {
+    userLogged: false
+  }
+});
+*/
+
 export const evtUserSuccessfullyAuthenticatedHandler = {
   command: Events.USER_SUCCESSFULLY_AUTHENTICATED,
-  handler: ({ state, payload }) => {
+  handler: ({ state, payload, broadcastEvent }) => {
     const { jwt, username } = payload;
 
-    // TODO: do we need Subway...exposeEvents() at all?
-    // - inject broadcastEvent() ?
-    // - add return field exposeEvents ?
+    broadcastEvent(Events.SESSION_STATUS_UPDATED, {
+      userLogged: true,
+      username
+    });
+
     return {
       events: [{
         id: Events.SESSION_STATUS_UPDATED,

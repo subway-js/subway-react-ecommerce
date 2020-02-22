@@ -21,7 +21,7 @@ export const aggregateConfig = {
   cmdHandlers,
   evtHandlers,
   bootstrap: () => {
-    Subway.selectAggregate(AGGREGATE_NAME).exposeCommandHandler(
+    Subway.selectAggregate(AGGREGATE_NAME).publicChannel().reactToCommand(
       PublicCommands.NAVIGATE_TO_PRODUCT_DETAILS,
       ({ payload }) => {
         return {
@@ -35,7 +35,7 @@ export const aggregateConfig = {
       }
     );
 
-    Subway.selectAggregate(AGGREGATE_NAME).exposeCommandHandler(
+    Subway.selectAggregate(AGGREGATE_NAME).publicChannel().reactToCommand(
       PublicCommands.NAVIGATE_TO_CHECKOUT_PAGE,
       ({ payload }) => {
         return {

@@ -20,7 +20,7 @@ export const aggregateConfig = {
   cmdHandlers,
   evtHandlers,
   bootstrap: () => {
-    Subway.selectAggregate(AGGREGATE_NAME).exposeCommandHandler(
+    Subway.selectAggregate(AGGREGATE_NAME).publicChannel().reactToCommand(
       PublicCommands.SHOW_LOGIN_MODAL,
       ({ payload }) => {
         return {
@@ -33,7 +33,7 @@ export const aggregateConfig = {
       }
     );
 
-    Subway.selectAggregate(AGGREGATE_NAME).exposeCommandHandler(
+    Subway.selectAggregate(AGGREGATE_NAME).publicChannel().reactToCommand(
       PublicCommands.PERFORM_USER_LOGOUT,
       ({ payload }) => {
         return {
@@ -46,12 +46,12 @@ export const aggregateConfig = {
       }
     );
 
-    Subway.selectAggregate(AGGREGATE_NAME).exposeEvent({
-      type: Events.SESSION_STATUS_UPDATED,
-      defaultValue: {
-        userLogged: false
-      }
-    });
+    // Subway.selectAggregate(AGGREGATE_NAME).exposeEvent({
+    //   type: Events.SESSION_STATUS_UPDATED,
+    //   defaultValue: {
+    //     userLogged: false
+    //   }
+    // });
   }
 };
 
