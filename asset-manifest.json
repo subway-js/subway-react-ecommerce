@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/subway-react-ecommerce/static/js/main.a762c183.chunk.js",
-    "main.js.map": "/subway-react-ecommerce/static/js/main.a762c183.chunk.js.map",
+    "main.js": "/subway-react-ecommerce/static/js/main.16e38ce0.chunk.js",
+    "main.js.map": "/subway-react-ecommerce/static/js/main.16e38ce0.chunk.js.map",
     "runtime-main.js": "/subway-react-ecommerce/static/js/runtime-main.a1eb446f.js",
     "runtime-main.js.map": "/subway-react-ecommerce/static/js/runtime-main.a1eb446f.js.map",
     "static/js/2.141d1b46.chunk.js": "/subway-react-ecommerce/static/js/2.141d1b46.chunk.js",
     "static/js/2.141d1b46.chunk.js.map": "/subway-react-ecommerce/static/js/2.141d1b46.chunk.js.map",
     "index.html": "/subway-react-ecommerce/index.html",
-    "precache-manifest.038ff75d3f75dcf4057330d71e116d7b.js": "/subway-react-ecommerce/precache-manifest.038ff75d3f75dcf4057330d71e116d7b.js",
+    "precache-manifest.ef3d627c09bcf23b208119047afca007.js": "/subway-react-ecommerce/precache-manifest.ef3d627c09bcf23b208119047afca007.js",
     "service-worker.js": "/subway-react-ecommerce/service-worker.js",
     "static/js/2.141d1b46.chunk.js.LICENSE": "/subway-react-ecommerce/static/js/2.141d1b46.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.a1eb446f.js",
     "static/js/2.141d1b46.chunk.js",
-    "static/js/main.a762c183.chunk.js"
+    "static/js/main.16e38ce0.chunk.js"
   ]
 }
