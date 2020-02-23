@@ -16,9 +16,10 @@ export const hideLoginScreen = () => {
   );
 };
 
-export const simulateSuccessfulLogin = (username, password) => {
+export const simulateLogin = (username, password, onRejected) => {
   Subway.selectAggregate(AGGREGATE_NAME).command(
     Commands.AUTHENTICATE_USER,
-    { username, password }
+    { username, password },
+    onRejected
   );
 };

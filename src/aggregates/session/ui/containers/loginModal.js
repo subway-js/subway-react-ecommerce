@@ -3,11 +3,12 @@ import { Button, Header, Icon, Modal, Form } from "semantic-ui-react";
 import { useObserveAggregateState } from "../../../../subwayUtils";
 import {
   hideLoginScreen,
-  simulateSuccessfulLogin
+  simulateLogin
 } from "../../commandCreators";
 
 export function LoginModal() {
   const [authInProgress, setAuthInProgress] = useState(false);
+  const [wrongCredentials, setWrongCredentials] = useState(false);
   const [isLoginModalVisible] = useObserveAggregateState(
     "SessionAggregate",
     aggregateState => aggregateState.loginModalVisible
@@ -15,6 +16,7 @@ export function LoginModal() {
 
   useEffect(() => {
     setAuthInProgress(false);
+    setWrongCredentials(false);
   }, [isLoginModalVisible]);
 
   return (
@@ -24,7 +26,9 @@ export function LoginModal() {
       size="small"
       onClose={() => hideLoginScreen()}
     >
-      <Header color="teal" icon="user" content="Enter your credentials" />
+      {!wrongCredentials && <Header color="teal" icon="user" content="Enter your credentials" />}
+      {wrongCredentials && <Header color="red" icon="user" content="Wrong credentials: try again" />}
+
       <Modal.Content>
         <Form>
           <Form.Field>
@@ -55,7 +59,22 @@ export function LoginModal() {
           color="teal"
           onClick={() => {
             setAuthInProgress(true);
-            simulateSuccessfulLogin("MichaelJordan23", "aPassword");
+            simulateLogin("MichaelJordan23", "wrongPassword", ({ reasonString, meta }) => {
+              setWrongCredentials(true);
+              setAuthInProgress(false);
+            });
+          }}
+        >
+          <Icon name="checkmark" /> Simulate wrong credentials
+        </Button>
+
+        <Button
+          loading={authInProgress}
+          disabled={authInProgress}
+          color="teal"
+          onClick={() => {
+            setAuthInProgress(true);
+            simulateLogin("MichaelJordan23", "air23");
           }}
         >
           <Icon name="checkmark" /> Simulate Successful Login
