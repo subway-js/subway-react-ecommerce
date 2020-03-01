@@ -5,7 +5,7 @@ import { useObserveAggregateState } from "./subwayUtils/";
 
 import { Navbar, Breadcrumbs } from "./aggregates/navigation";
 import { ProductList, ProductDetails, Disclaimer } from "./aggregates/products";
-import { Checkout } from "./aggregates/shoppingCart";
+import { Checkout, HeaderShoppingCartDropdown } from "./aggregates/shoppingCart";
 
 import { LoginModal } from "./aggregates/session";
 function App() {
@@ -14,16 +14,11 @@ function App() {
     aggregateState => aggregateState.currentPage
   );
 
-  const importedComponent = Subway.selectAggregate(
-    "ShoppingCartAggregate"
-  ).publicChannel().getComponent("HeaderShoppingCartDropdown");
-  const HeaderShoppingCartDropdown = importedComponent.factoryFunction();
-
   return (
     <div style={{ background: "#f8f9fa" }}>
       <Container>
         <LoginModal />
-        <Navbar shoppingCartMenuItem={HeaderShoppingCartDropdown} />
+        <Navbar shoppingCartMenuItem={<HeaderShoppingCartDropdown />} />
         <br />
         <br />
         <br />
