@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6a663b036d9f74029e55e784297c2e20",
+    "revision": "0cd4f2f157434458153d13df4a114d66",
     "url": "/subway-react-ecommerce/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/subway-react-ecommerce/static/js/2.141d1b46.chunk.js.LICENSE"
   },
   {
-    "revision": "bd864abd810dd8be11fc",
-    "url": "/subway-react-ecommerce/static/js/main.16e38ce0.chunk.js"
+    "revision": "1c780a136fd81ce439f3",
+    "url": "/subway-react-ecommerce/static/js/main.3749b885.chunk.js"
   },
   {
     "revision": "5058dbcbb0e0352bb4e1",

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/subway-react-ecommerce/precache-manifest.ef3d627c09bcf23b208119047afca007.js"
+  "/subway-react-ecommerce/precache-manifest.b885bad4aa817e7802e938aab1c3a66b.js"
 );
 
 self.addEventListener('message', (event) => {
