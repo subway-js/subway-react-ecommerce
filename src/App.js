@@ -1,7 +1,6 @@
 import React from "react";
 import { Container } from "semantic-ui-react";
-import { Subway } from "./subwayUtils";
-import { useObserveAggregateState } from "./subwayUtils/";
+import { useObserveAggregateState } from "@subway-js/subway-react";
 
 import { Navbar, Breadcrumbs } from "./aggregates/navigation";
 import { ProductList, ProductDetails, Disclaimer } from "./aggregates/products";

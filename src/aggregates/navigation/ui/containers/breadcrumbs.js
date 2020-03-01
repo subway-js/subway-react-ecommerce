@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Breadcrumb, Button, Grid } from "semantic-ui-react";
 
-import {
-  useSpyAggregateEvent,
+import { 
   useObserveAggregateState
-} from "../../../../subwayUtils/";
+} from "@subway-js/subway-react";
+
 import { selectHomePage } from "../../commandCreators";
 
 import { AGGREGATE_NAME as NAVIGATION_AGGREGATE_NAME } from "../../";
@@ -12,8 +12,7 @@ import { AGGREGATE_NAME as NAVIGATION_AGGREGATE_NAME } from "../../";
 export function Breadcrumbs() {
 
   const [navigationState] = useObserveAggregateState(NAVIGATION_AGGREGATE_NAME);
-  const { currentPage, selectedProductName} = navigationState || {};
-
+  const { currentPage, selectedProductName } = navigationState || {};
   return (
     <Grid relaxed columns={2}>
       <Grid.Column>

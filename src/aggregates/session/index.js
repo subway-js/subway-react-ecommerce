@@ -1,6 +1,5 @@
-import { Subway } from "../../subwayUtils/";
-import { Events } from "./verbs/events";
-import { Commands } from "./verbs/commands";
+import { Subway } from "@subway-js/subway-react";
+import { Events } from "./verbs/events"; 
 import { PublicCommands } from "./verbs/public";
 
 import { cmdHandlers } from "./handlers/commands";
